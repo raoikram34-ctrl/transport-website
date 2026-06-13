@@ -27,8 +27,7 @@ const POSTS: BlogPost[] = [
     category: "LOGISTICS_TECH",
     date: "June 08, 2026",
     readTime: "4 Min Read",
-    image:
-      "https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/image-1.jpg",
     views: "1.2k views",
     author: "Marshall Vance",
   },
@@ -40,8 +39,7 @@ const POSTS: BlogPost[] = [
     category: "COMPLIANCE & SAFETY",
     date: "May 29, 2026",
     readTime: "6 Min Read",
-    image:
-      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/image-2.jpg",
     views: "940 views",
     author: "Elena Rostov",
   },
@@ -53,8 +51,7 @@ const POSTS: BlogPost[] = [
     category: "INFRASTRUCTURE",
     date: "April 15, 2026",
     readTime: "5 Min Read",
-    image:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/image-3.jpg",
     views: "1.8k views",
     author: "Marcus Brody",
   },
