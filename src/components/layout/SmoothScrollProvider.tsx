@@ -29,6 +29,7 @@ export default function SmoothScrollProvider({ children }: { children: React.Rea
 
     // Initialize Lenis
     const lenis = new Lenis({
+      autoRaf: false,
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // standard expo out easing
       orientation: "vertical",

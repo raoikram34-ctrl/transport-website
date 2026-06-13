@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight, Gauge, Shield, Milestone, Compass } from "lucide-react";
 import { FleetItem } from "@/types/index";
 import GSAPScrollReveal from "../widgets/GSAPScrollReveal";
+import Image from "next/image";
 
 const FLEET_INVENTORY: FleetItem[] = [
   {
@@ -183,17 +184,22 @@ export default function FleetShowcase() {
 
               {/* Photo Rendering */}
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={activeIndex}
-                  src={FLEET_IMAGES[activeIndex]}
-                  alt={activeTruck.name}
-                  referrerPolicy="no-referrer"
                   initial={{ opacity: 0, scale: 1.04 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full h-full object-cover filter brightness-90 aspect-auto"
-                />
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <Image
+                    src={FLEET_IMAGES[activeIndex]}
+                    alt={activeTruck.name}
+                    fill
+                    className="object-cover filter brightness-90"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                </motion.div>
               </AnimatePresence>
 
               {/* Overlay badge with locator telemetry details */}

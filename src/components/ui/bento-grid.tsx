@@ -1,4 +1,5 @@
 import React from "react"
+import Image from "next/image"
 
 export function BentoGrid({ className = "", children,
 }: 
@@ -38,16 +39,16 @@ export function BentoCard({
         ${className}
       `}
     >
-      <img
+      <Image
         src={image}
         alt={title}
+        fill
         className="
-          absolute inset-0
-          w-full h-full
           object-cover
           transition-all duration-700
           group-hover:scale-110
         "
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
 
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />

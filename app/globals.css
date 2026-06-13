@@ -89,10 +89,17 @@
 }
 
 @media (min-width: 1024px) {
-  html,
-  body,
-  a,
-  button {
-    cursor: none;
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
+
+  input,
+  textarea,
+  select,
+  input *,
+  textarea * {
+    cursor: auto !important;
   }
 }

@@ -14,6 +14,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import OperationsGuide from "@/components/sections/OperationsGuide";
 import MagneticButton from "@/components/shared/MagneticButton";
 import GSAPScrollReveal from "@/components/widgets/GSAPScrollReveal";
+import Image from "next/image";
 
 
 const HERO_SCENES = [
@@ -104,11 +105,12 @@ export default function Home() {
               transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
               className="absolute inset-0 w-full h-full"
             >
-              <img
+              <Image
                 src={currentScene.image}
                 alt="Skyhaul Transit LLC fleet"
-                className="w-full h-full object-cover filter brightness-75 contrast-125 select-none pointer-events-none"
-                referrerPolicy="no-referrer"
+                fill
+                priority
+                className="object-cover filter brightness-75 contrast-125 select-none pointer-events-none"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/90" />
               <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-neutral-950 via-transparent to-transparent hidden lg:block" />
