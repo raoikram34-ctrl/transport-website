@@ -1,0 +1,6 @@
+{
+  "name": "Enterprise Trucking & Logistics",
+  "description": "A premium, cinema-grade enterprise trucking and logistics website inspired by high-end progressive storytelling and fluid scroll metrics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
