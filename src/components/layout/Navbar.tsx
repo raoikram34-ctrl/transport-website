@@ -22,6 +22,7 @@ export default function Navbar() {
   const menuItems = [
     { label: "Home", href: "/" },
     { label: "Our Services", href: "/services" },
+    { label: "Blogs", href: "/blogs" },
     { label: "About Us", href: "/about" },
     { label: "Careers", href: "/careers" },
     { label: "Contact HQ", href: "/contact" },
@@ -63,7 +64,10 @@ export default function Navbar() {
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-8 font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-400">
           {menuItems.map((item) => {
-            const isActive = pathname === item.href || (item.href === "/services" && pathname.startsWith("/services/"));
+            const isActive = 
+              pathname === item.href || 
+              (item.href === "/services" && pathname.startsWith("/services/")) ||
+              (item.href === "/blogs" && pathname.startsWith("/blogs/"));
             return (
               <a
                 key={item.label}

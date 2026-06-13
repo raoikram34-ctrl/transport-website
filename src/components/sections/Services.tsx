@@ -1,81 +1,17 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Truck, Shuffle, Snowflake, Box, Zap, Users, ArrowUpRight, HelpCircle } from "lucide-react";
+import { Truck, Shuffle, Box, Layers, Zap, ShieldAlert, ArrowUpRight, HelpCircle } from "lucide-react";
+import { SERVICES_DATA } from "@/data/servicesData";
 
-const SERVICES_DATA = [
-  {
-    id: "serv-ftl",
-    title: "Full-Truckload (FTL)",
-    description: "Multi-regional dedicated point-to-point transit. Absolute security for high-value commodity shipments on standard 53ft dry vans.",
-    icon: Truck,
-    specs: [
-      { label: "Max Payload", value: "45,000 lbs" },
-      { label: "Trailer Type", value: "53' Air Ride Dry Van" },
-      { label: "Dispatch Priority", value: "Enterprise Dedicated" },
-    ],
-    features: ["Solo or Team Drivers", "Real-Time GPS Manifests", "Geofenced Lockdowns"],
-  },
-  {
-    id: "serv-ltl",
-    title: "Less-Than-Truckload (LTL)",
-    description: "Proactive cost optimization leveraging regional distribution partners and smart staging terminals to bypass high-rate bottlenecks.",
-    icon: Shuffle,
-    specs: [
-      { label: "Pricing Index", value: "NMC Class Based" },
-      { label: "Asset Network", value: "Hub-and-Spoke" },
-      { label: "Est. Transit", value: "2 - 5 Business Days" },
-    ],
-    features: ["Liftgate Dispatch Available", "Cross-dock Optimization", "Cargo Consolidation"],
-  },
-  {
-    id: "serv-temp",
-    title: "Cold Chain / Refrigerated",
-    description: "Precision temperature-controlled transport of high-value perishables, pharmaceuticals, and organic chemical components.",
-    icon: Snowflake,
-    specs: [
-      { label: "Temp Ranges", value: "-20°F to +70°F" },
-      { label: "Telemetry", value: "Continuous Smart Probe" },
-      { label: "Compliance", value: "FDA Food Safety Act" },
-    ],
-    features: ["Remote Setpoint Toggling", "Pre-cooling Checks", "Reefer Telematics Stream"],
-  },
-  {
-    id: "serv-flat",
-    title: "Flatbed / Heavy Haul",
-    description: "Heavy machinery, industrial steel coils, and structural oversized assets managed by heavy hauling engineers.",
-    icon: Box,
-    specs: [
-      { label: "Max Trailer Class", value: "Step-Deck / RGN" },
-      { label: "Permitting", value: "Full State Level Escort" },
-      { label: "Overweight Specs", value: "Up to 80,000+ lbs" },
-    ],
-    features: ["Chain & Strap Certifications", "Tarping Specialists", "Loading Ramp Logistics"],
-  },
-  {
-    id: "serv-exp",
-    title: "Expedited Hot-Shot",
-    description: "Priority dual-driver dispatch for manufacturing assembly lines, critical parts supply, or emergency high-priority freights.",
-    icon: Zap,
-    specs: [
-      { label: "First Unit Out", value: "Within 60 Minutes" },
-      { label: "Transit Strategy", value: "Non-Stop Dual-Driver" },
-      { label: "Monitoring", value: "Milestone Dispatch" },
-    ],
-    features: ["Premium Dedicated Sprinters", "Constant Live Status Sync", "Direct Direct routing"],
-  },
-  {
-    id: "serv-ded",
-    title: "Dedicated Fleets",
-    description: "Establish dedicated drivers, tractors, and trailer fleets assigned purely to your high-frequency distribution lanes.",
-    icon: Users,
-    specs: [
-      { label: "Contract Basis", value: "1 - 3 Year Custom SLAS" },
-      { label: "Fleet Branding", value: "Available Option" },
-      { label: "Driver Pool", value: "Assigned Backups" },
-    ],
-    features: ["Lane Rate Security Locks", "Surge Fleet Access", "Corporate Account Advisor"],
-  },
-];
+const ICON_MAP = {
+  Truck: Truck,
+  Shuffle: Shuffle,
+  Box: Box,
+  Layers: Layers,
+  Zap: Zap,
+  ShieldAlert: ShieldAlert,
+};
+
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -106,7 +42,7 @@ export default function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {SERVICES_DATA.map((service, idx) => {
-            const IconComponent = service.icon;
+            const IconComponent = ICON_MAP[service.iconName] || Truck;
             const isHovered = hoveredIndex === idx;
 
             return (
@@ -146,7 +82,7 @@ export default function Services() {
                     <ArrowUpRight className="w-4 h-4 text-neutral-650 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:text-orange-500" />
                   </h3>
                   <p className="text-xs text-neutral-400 mt-2.5 leading-relaxed font-light min-h-[50px]">
-                    {service.description}
+                    {service.shortDesc}
                   </p>
                 </div>
 

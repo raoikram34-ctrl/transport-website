@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, use } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Truck, Shuffle, Snowflake, Box, Zap, Users, ArrowLeft, ShieldCheck, Clock, MapPin, Calculator, HelpCircle, ChevronDown } from "lucide-react";
+import { Truck, Shuffle, Box, Layers, Zap, ShieldAlert, ArrowLeft, ShieldCheck, Clock, MapPin, Calculator, HelpCircle, ChevronDown } from "lucide-react";
 import { SERVICES_DATA, ServiceDetailType } from "@/data/servicesData";
 import { useRouter } from "next/navigation";
 
@@ -13,10 +13,10 @@ interface PageProps {
 const ICON_MAP = {
   Truck: Truck,
   Shuffle: Shuffle,
-  Snowflake: Snowflake,
   Box: Box,
+  Layers: Layers,
   Zap: Zap,
-  Users: Users,
+  ShieldAlert: ShieldAlert,
 };
 
 export default function ServiceDetail({ params }: PageProps) {

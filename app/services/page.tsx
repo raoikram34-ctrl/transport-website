@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { motion, useInView } from "motion/react";
-import { Truck, Shuffle, Snowflake, Box, Zap, Users, ArrowUpRight } from "lucide-react";
+import { Truck, Shuffle, Box, Layers, Zap, ShieldAlert, ArrowUpRight } from "lucide-react";
 import { SERVICES_DATA } from "@/data/servicesData";
 import { useRouter } from "next/navigation";
 
@@ -10,10 +10,10 @@ import { useRouter } from "next/navigation";
 const ICON_MAP = {
   Truck: Truck,
   Shuffle: Shuffle,
-  Snowflake: Snowflake,
   Box: Box,
+  Layers: Layers,
   Zap: Zap,
-  Users: Users,
+  ShieldAlert: ShieldAlert,
 };
 
 export default function ServicesParent() {

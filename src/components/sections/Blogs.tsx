@@ -5,59 +5,13 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { BookOpen, Calendar, User, Eye, ArrowRight } from "lucide-react";
 import GSAPScrollReveal from "../widgets/GSAPScrollReveal";
+import { useRouter } from "next/navigation";
+import { BLOGS_DATA } from "@/data/blogsData";
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  views: string;
-  author: string;
-}
-
-const POSTS: BlogPost[] = [
-  {
-    id: "post-1",
-    title: "Optimizing Truck Freight Routes: How Predictive Weather Modeling Saves Hours",
-    excerpt:
-      "Discover how Skyhaul's dynamic dispatch engine integrates live weather grids and DOT scale closures to reroute high-priority cargo.",
-    category: "LOGISTICS_TECH",
-    date: "June 08, 2026",
-    readTime: "4 Min Read",
-    image: "/images/image-1.jpg",
-    views: "1.2k views",
-    author: "Marshall Vance",
-  },
-  {
-    id: "post-2",
-    title: "Class-A Driver Wellness: Why Modern Sleeper Cabs Improve Safety",
-    excerpt:
-      "Investigating the relationship between ergonomic tractor cabs, air-ride systems, and long-haul safety performance.",
-    category: "COMPLIANCE & SAFETY",
-    date: "May 29, 2026",
-    readTime: "6 Min Read",
-    image: "/images/image-2.jpg",
-    views: "940 views",
-    author: "Elena Rostov",
-  },
-  {
-    id: "post-3",
-    title: "Future of Intermodal Cross-Dock Terminals in Modern Logistics",
-    excerpt:
-      "Exploring automation, AI sorting lanes, and smart infrastructure in next-gen freight terminals.",
-    category: "INFRASTRUCTURE",
-    date: "April 15, 2026",
-    readTime: "5 Min Read",
-    image: "/images/image-3.jpg",
-    views: "1.8k views",
-    author: "Marcus Brody",
-  },
-];
 
 export default function Blogs() {
+  const router = useRouter();
+
   return (
     <section
       id="blogs"
@@ -99,11 +53,12 @@ export default function Blogs() {
 
         {/* GRID */}
         <GSAPScrollReveal effect="slide-up" stagger={0.15} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {POSTS.map((post, index) => (
+          {BLOGS_DATA.slice(0, 3).map((post, index) => (
             <motion.article
               key={post.id}
               whileHover={{ y: -6 }}
-              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300"
+              onClick={() => router.push(`/blogs/${post.id}`)}
+              className="group relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-300 cursor-pointer"
             >
               {/* IMAGE */}
               <div className="relative aspect-[16/10] overflow-hidden">
@@ -176,7 +131,10 @@ export default function Blogs() {
           delay={0.2}
           className="mt-16 flex justify-center"
         >
-          <button className="group flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white hover:text-orange-400 transition-colors">
+          <button 
+            onClick={() => router.push("/blogs")}
+            className="group flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white hover:text-orange-400 transition-colors cursor-pointer"
+          >
             Explore Full Archive
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-orange-500" />
           </button>
