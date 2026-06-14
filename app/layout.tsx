@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 import "./globals.css";
 import CustomCursor from "@/components/shared/CustomCursor";
+import ChatbotWidget from "@/components/widgets/ChatbotWidget";
 
 export const metadata: Metadata = {
   title: "Skyhaul Transit | Premium Enterprise Logistics",
@@ -23,6 +24,7 @@ export default function RootLayout({
       </head>
       <body>
         <CustomCursor />
+        <ChatbotWidget />
         <SmoothScrollProvider>
           <main className="min-h-screen bg-[#050505] text-[#F5F5F5] font-sans relative grid-overlay selection:bg-[#f97316] selection:text-black overflow-hidden flex flex-col justify-between">
             {/* Background Ambient Glows */}
@@ -45,3 +47,4 @@ export default function RootLayout({
     </html>
   );
 }
+
