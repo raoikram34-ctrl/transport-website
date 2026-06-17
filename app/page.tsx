@@ -84,7 +84,7 @@ const FLEET_GALLERY = [
 ];
 
 const FRAME_FILES = Array.from({ length: 30 }, (_, i) => {
-  const frameNum = Math.min(96, Math.floor(1 + i * (95 / 29)));
+  const frameNum = i + 1;
   const padded = String(frameNum).padStart(4, "0");
   return `/hero-frames/frame_${padded}.jpg`;
 });
