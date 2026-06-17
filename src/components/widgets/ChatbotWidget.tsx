@@ -69,10 +69,21 @@ export default function ChatbotWidget() {
         body: JSON.stringify({ message: cleanInput }),
       });
 
-      const data = await response.json();
+      let data: any = null;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || "An error occurred while communicating with the AI.");
+        throw new Error(
+          (data && data.error) ||
+          `Server Offline (Status ${response.status}): Route could not be resolved.`
+        );
+      }
+
+      if (!data || !data.response) {
+        throw new Error("Invalid response format received from server.");
       }
 
       // Sanitize AI response client-side before rendering (Defense-in-depth)

@@ -15,6 +15,14 @@ import OperationsGuide from "@/components/sections/OperationsGuide";
 import MagneticButton from "@/components/shared/MagneticButton";
 import GSAPScrollReveal from "@/components/widgets/GSAPScrollReveal";
 import Image from "next/image";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
+
 
 
 const HERO_SCENES = [
@@ -75,49 +83,173 @@ const FLEET_GALLERY = [
  
 ];
 
+const FRAME_FILES = Array.from({ length: 30 }, (_, i) => {
+  const frameNum = Math.min(96, Math.floor(1 + i * (95 / 29)));
+  const padded = String(frameNum).padStart(4, "0");
+  return `/hero-frames/frame_${padded}.jpg`;
+});
+
 export default function Home() {
   const router = useRouter();
   const [activeScene, setActiveScene] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const isServicesInView = useInView(containerRef, { once: true, amount: 0.1 });
 
-  // Rotate hero scenes
+  // Refs for Scroll-Driven Video Background and Syncing
+  const heroTriggerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const currentFrameRef = useRef<number>(0);
+  const activeSceneRef = useRef<number>(0);
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const scrollTriggerInstanceRef = useRef<any>(null);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Canvas frame drawing function (centered object-cover behavior)
+  const renderCanvas = (frameIndex: number) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const img = imagesRef.current[frameIndex];
+    if (!img) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+    const expectedWidth = Math.floor(rect.width * dpr);
+    const expectedHeight = Math.floor(rect.height * dpr);
+
+    if (canvas.width !== expectedWidth || canvas.height !== expectedHeight) {
+      canvas.width = expectedWidth;
+      canvas.height = expectedHeight;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const imgRatio = img.width / img.height;
+    const canvasRatio = canvas.width / canvas.height;
+    let drawWidth, drawHeight, drawX, drawY;
+
+    if (imgRatio > canvasRatio) {
+      drawHeight = canvas.height;
+      drawWidth = canvas.height * imgRatio;
+      drawX = (canvas.width - drawWidth) / 2;
+      drawY = 0;
+    } else {
+      drawWidth = canvas.width;
+      drawHeight = canvas.width / imgRatio;
+      drawX = 0;
+      drawY = (canvas.height - drawHeight) / 2;
+    }
+
+    ctx.drawImage(img, drawX, drawY, drawWidth, drawHeight);
+  };
+
+  // Preload frames on client mount
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveScene((prev) => (prev + 1) % HERO_SCENES.length);
-    }, 9000);
-    return () => clearInterval(timer);
+    let loadedCount = 0;
+    const images: HTMLImageElement[] = [];
+
+    FRAME_FILES.forEach((src, idx) => {
+      const img = new window.Image();
+      img.src = src;
+      img.onload = () => {
+        images[idx] = img;
+        loadedCount++;
+        if (loadedCount === 30) {
+          renderCanvas(0);
+        }
+      };
+    });
+    imagesRef.current = images;
+
+    const handleResize = () => {
+      renderCanvas(currentFrameRef.current);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  // GSAP ScrollTrigger to pin Hero and scrub frames/scenes
+  useEffect(() => {
+    if (typeof window === "undefined" || !heroTriggerRef.current) return;
+
+    const timer = setTimeout(() => {
+      const trigger = ScrollTrigger.create({
+        trigger: heroTriggerRef.current,
+        start: "top top",
+        end: "+=250%",
+        pin: true,
+        scrub: true,
+        refreshPriority: 1,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          setScrollProgress(progress);
+
+          // Animate frames (0 to 29)
+          const frameIndex = Math.min(29, Math.floor(progress * 30));
+          currentFrameRef.current = frameIndex;
+          renderCanvas(frameIndex);
+
+          // Update active text slide scene (0, 1, 2)
+          const sceneIndex = Math.min(2, Math.floor(progress * 3));
+          if (sceneIndex !== activeSceneRef.current) {
+            activeSceneRef.current = sceneIndex;
+            setActiveScene(sceneIndex);
+          }
+        }
+      });
+
+      scrollTriggerInstanceRef.current = trigger;
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      if (scrollTriggerInstanceRef.current) {
+        scrollTriggerInstanceRef.current.kill();
+      }
+    };
+  }, []);
+
+  // Sync manual selector clicks to scroll position
+  const scrollToScene = (idx: number) => {
+    if (scrollTriggerInstanceRef.current) {
+      const start = scrollTriggerInstanceRef.current.start;
+      const end = scrollTriggerInstanceRef.current.end;
+      const total = end - start;
+      const targetProgress = (idx + 0.5) / 3;
+      const targetScroll = start + total * targetProgress;
+
+      window.scrollTo({
+        top: targetScroll,
+        behavior: "smooth"
+      });
+    } else {
+      setActiveScene(idx);
+    }
+  };
 
   const currentScene = HERO_SCENES[activeScene];
 
   return (
     <div className="w-full">
       {/* 1. CINEMATIC HERO SLIDER */}
-      <section aria-label="Hero Showcase" className="relative min-h-screen w-full flex items-center justify-center bg-black overflow-hidden py-24 sm:py-0">
-        <div className="absolute inset-0 z-0">
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={currentScene.id}
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.35, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <Image
-                src={currentScene.image}
-                alt="Skyhaul Transit LLC fleet"
-                fill
-                priority
-                className="object-cover filter brightness-75 contrast-125 select-none pointer-events-none"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/90" />
-              <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-neutral-950 via-transparent to-transparent hidden lg:block" />
-              <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-neutral-950 to-transparent" />
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      <div ref={heroTriggerRef} className="relative w-full">
+        <section aria-label="Hero Showcase" className="relative h-screen w-full flex items-center justify-center bg-black overflow-hidden py-24 sm:py-0">
+          <div className="absolute inset-0 z-0">
+            <canvas
+              ref={canvasRef}
+              className="w-full h-full object-cover filter brightness-75 contrast-125 select-none pointer-events-none"
+            />
+            {/* Dark gradient masks for layout contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/70 to-neutral-950/90 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-neutral-950 via-transparent to-transparent hidden lg:block pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-neutral-950 to-transparent pointer-events-none" />
+          </div>
 
         {/* Left Side Laser Stripe */}
         <div className="absolute left-6 sm:left-12 top-28 bottom-12 w-px bg-white/5 hidden sm:block">
@@ -212,7 +344,7 @@ export default function Home() {
               {HERO_SCENES.map((scene, idx) => (
                 <button
                   key={scene.id}
-                  onClick={() => setActiveScene(idx)}
+                  onClick={() => scrollToScene(idx)}
                   className={`w-full text-left p-4 rounded-sm border transition-all duration-300 flex items-center justify-between group cursor-pointer focus:outline-none focus:ring-1 focus:ring-orange-500 ${
                     activeScene === idx
                       ? "bg-white/5 border-orange-500/40"
@@ -235,10 +367,8 @@ export default function Home() {
 
                   {activeScene === idx ? (
                     <div className="w-12 h-[2px] bg-neutral-800 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: 9, ease: "linear" }}
+                      <div
+                        style={{ width: `${Math.min(100, Math.max(0, ((scrollProgress - idx * 0.333) / 0.333) * 100))}%` }}
                         className="h-full bg-orange-500"
                       />
                     </div>
@@ -283,6 +413,8 @@ export default function Home() {
           <ArrowDownCircle className="w-4 h-4 text-orange-500" />
         </div>
       </section>
+    </div>
+
 
       {/* 2. CORPORATE PERFORMANCE METRICS (STATS) */}
       <Stats />

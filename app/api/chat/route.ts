@@ -124,8 +124,9 @@ export async function POST(request: NextRequest) {
     );
   } catch (error: any) {
     console.error("API Error: ", error);
+    const details = error?.message || String(error);
     return new NextResponse(
-      JSON.stringify({ error: "An unexpected server error occurred during AI processing." }),
+      JSON.stringify({ error: `AI Processing Error: ${details}` }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
