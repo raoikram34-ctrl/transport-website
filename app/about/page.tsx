@@ -48,7 +48,7 @@ export default function About() {
             <span>/</span>
             <span className="text-white">Corporate Profile</span>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-3">
+          <span className="eyebrow-label text-orange-500 block mb-3">
             Company Profile & History
           </span>
           <h1 className="text-4xl sm:text-6xl font-display font-medium text-white tracking-tight leading-none mb-6">
@@ -95,7 +95,7 @@ export default function About() {
         {/* Story Section & Leadership block */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-center border-t border-white/5 pt-16">
           <div className="lg:col-span- così lg:col-span-6">
-            <span className="text-[10px] font-mono text-orange-550 text-orange-500 tracking-widest uppercase block mb-3 font-bold">The Corporate Mission</span>
+            <span className="eyebrow-label text-orange-500 block mb-3">The Corporate Mission</span>
             <h2 className="text-2xl sm:text-4xl font-display font-medium text-white mb-6">
               THE POWER TO RE-ROUTE ROAD TRAFFIC.
             </h2>
@@ -139,7 +139,7 @@ export default function About() {
         {/* History Timeline */}
         <div className="border-t border-white/5 pt-16">
           <div className="max-w-3xl mb-12">
-            <span className="text-[10px] font-mono text-[#f97316] tracking-widest uppercase block mb-2 font-bold">Growth Map</span>
+            <span className="eyebrow-label text-[#f97316] block mb-2">Growth Map</span>
             <h2 className="text-2xl sm:text-3xl font-display font-medium text-white">THE CORPORATE CHRONICLER</h2>
           </div>
 

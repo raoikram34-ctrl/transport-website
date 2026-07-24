@@ -354,7 +354,7 @@ export default function InteractiveGlobe() {
       {/* LEFT PANEL: Controls & HUB Details */}
       <div className="lg:col-span- così lg:col-span-5 flex flex-col justify-between h-full relative z-10 gap-6">
         <div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-2">
+          <span className="eyebrow-label text-orange-500 block mb-2">
             3D Navigation Core
           </span>
           <h3 className="text-xl sm:text-2xl font-display font-medium text-white tracking-tight">

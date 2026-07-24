@@ -93,7 +93,7 @@ export default function Stats() {
         <GSAPScrollReveal effect="slide-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/5 pb-8">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-2">
+              <span className="eyebrow-label text-orange-500 block mb-2">
                 Performance Indicators
               </span>
               <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight">
@@ -125,7 +125,7 @@ export default function Stats() {
                 </div>
 
                 {/* Simulated metric state */}
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#f97316] font-bold">
+                <span className="eyebrow-label-sm text-[#f97316] font-bold">
                   Telemetry 0{idx + 1}
                 </span>
 

@@ -37,7 +37,7 @@ export default function ServicesParent() {
             <span>/</span>
             <span className="text-white">Our Logistics Portfolios</span>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-505 text-orange-500 font-bold block mb-3">
+          <span className="eyebrow-label text-orange-555 text-orange-500 block mb-3">
             Service Command Core
           </span>
           <h1 className="text-4xl sm:text-6xl font-display font-bold text-white tracking-tight leading-none">

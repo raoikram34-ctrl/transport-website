@@ -28,7 +28,7 @@ export default function Services() {
         
         {/* Title Block */}
         <div ref={containerRef} className="max-w-3xl mb-16">
-          <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-3">
+          <span className="eyebrow-label text-orange-500 block mb-3">
             Core Service Modules
           </span>
           <h2 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight leading-none">

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Calculator, ArrowRight, ShieldCheck, Map, Phone, Mail, Building, Clock, CheckCircle2, DollarSign } from "lucide-react";
 import { City } from "@/types/index";
 import { useRouter } from "next/navigation";
+import { FEATURES } from "@/utils/featureFlags";
 
 // Core cities with coordinates for mathematical distance/transit/price calculations
 const CITIES: City[] = [
@@ -116,214 +117,216 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 relative z-10">
         
         {/* Header Block */}
-        <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[#f97316] mb-4">
+        <div className={FEATURES.ENABLE_ESTIMATE_CALCULATOR ? "max-w-3xl mb-16" : "max-w-3xl mb-16 mx-auto text-center"}>
+          <div className={`flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[#f97316] mb-4 ${!FEATURES.ENABLE_ESTIMATE_CALCULATOR && "justify-center"}`}>
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="text-white">Contact & Quoting Terminal</span>
           </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-3">
+          <span className="eyebrow-label text-orange-505 text-orange-500 block mb-3">
             Interstate Dispatch Terminal
           </span>
           <h1 className="text-4xl sm:text-6xl font-display font-medium text-white tracking-tight leading-none mb-6">
             CONNECT WITH DISPATCH HQ.
           </h1>
           <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
-            Have cargo that needs hauling? Submit your road parameters to calculate an instant cost estimate bracket below, or call our 24/7 central Chicago command line.
+            Have cargo that needs hauling? Connect with our 24/7 central Chicago command line or submit an inquiry via our brokerage dispatch desk below.
           </p>
         </div>
 
-        {/* Two Columns Grid: Estimator form vs Terminal HQ lists */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
+        {/* Dynamic Column Grid Layout */}
+        <div className={FEATURES.ENABLE_ESTIMATE_CALCULATOR ? "grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20" : "max-w-2xl mx-auto mb-20"}>
           
-          {/* Left: Instant Estimator Portal */}
-          <div className="lg:col-span- così lg:col-span-7 bg-neutral-900/10 border border-white/5 p-6 sm:p-8 rounded-sm">
-            <span className="text-[10px] font-mono uppercase tracking-widest text-orange-500 font-bold block mb-6">
-              Pricing Estimation Engine
-            </span>
+          {/* Left: Instant Estimator Portal (Feature Flagged) */}
+          {FEATURES.ENABLE_ESTIMATE_CALCULATOR && (
+            <div className="lg:col-span-7 bg-neutral-900/10 border border-white/5 p-6 sm:p-8 rounded-sm">
+              <span className="eyebrow-label text-orange-500 block mb-6">
+                Pricing Estimation Engine
+              </span>
 
-            <AnimatePresence mode="wait">
-              {!formSubmitted ? (
-                <motion.div key="contact-quote-matrix">
-                  <form onSubmit={handleCalculate} className="flex flex-col gap-5">
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {/* Origin */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Origin Terminal</label>
-                        <select
-                          value={origin}
-                          onChange={(e) => setOrigin(e.target.value)}
-                          className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white uppercase focus:outline-none focus:border-orange-500 rounded-sm font-sans"
-                        >
-                          {CITIES.map((c) => (
-                            <option key={`orig-${c.name}`} value={`${c.name}, ${c.state}`}>{c.name}, {c.state}</option>
-                          ))}
-                        </select>
-                      </div>
-
-                      {/* Destination */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Destination Terminal</label>
-                        <select
-                          value={destination}
-                          onChange={(e) => setDestination(e.target.value)}
-                          className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white uppercase focus:outline-none focus:border-orange-500 rounded-sm font-sans"
-                        >
-                          {CITIES.map((c) => (
-                            <option key={`dest-${c.name}`} value={`${c.name}, ${c.state}`}>{c.name}, {c.state}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                      {/* Class */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Trailer Type</label>
-                        <select
-                          value={freightType}
-                          onChange={(e) => setFreightType(e.target.value)}
-                          className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-[#F5F5F5] focus:outline-none focus:border-orange-500 rounded-sm font-sans"
-                        >
-                          <option value="ftl">Dry Van (53ft Air Ride)</option>
-                          <option value="reefer">Refrigerated (Thermo)</option>
-                          <option value="ltl">Staged Cargo (LTL)</option>
-                        </select>
-                      </div>
-
-                      {/* Weight */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Est. Payload (lbs)</label>
-                        <input
-                          type="number"
-                          min="1"
-                          max="48000"
-                          value={weight}
-                          onChange={(e) => setWeight(parseInt(e.target.value) || 0)}
-                          className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none focus:border-orange-500 rounded-sm font-sans"
-                        />
-                      </div>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full h-11 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-orange-500 transition-colors mt-2"
-                    >
-                      Calculate Instant Route Bracket
-                    </button>
-                  </form>
-
-                  {calculatedQuote && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mt-6 pt-6 border-t border-white/5 space-y-6"
-                    >
-                      <div className="bg-neutral-950 p-5 rounded-sm border border-white/10 flex flex-col gap-4 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none" />
-                        
-                        <div className="flex justify-between items-center text-[9px] font-mono text-neutral-500 uppercase">
-                          <span>Calculated Cost bracket</span>
-                          <span className="text-emerald-400">Market index locked</span>
+              <AnimatePresence mode="wait">
+                {!formSubmitted ? (
+                  <motion.div key="contact-quote-matrix">
+                    <form onSubmit={handleCalculate} className="flex flex-col gap-5">
+                      
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {/* Origin */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Origin Terminal</label>
+                          <select
+                            value={origin}
+                            onChange={(e) => setOrigin(e.target.value)}
+                            className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white uppercase focus:outline-none focus:border-orange-500 rounded-sm font-sans"
+                          >
+                            {CITIES.map((c) => (
+                              <option key={`orig-${c.name}`} value={`${c.name}, ${c.state}`}>{c.name}, {c.state}</option>
+                            ))}
+                          </select>
                         </div>
 
-                        <div className="flex items-baseline gap-2">
-                          <span className="text-3xl sm:text-4xl font-display font-bold text-white flex items-center">
-                            <DollarSign className="w-5 h-5 text-orange-500 self-center" />
-                            {calculatedQuote.cost.toLocaleString()}
-                          </span>
-                          <span className="text-[10px] font-mono text-neutral-500 uppercase">Est. Gross U.S.D</span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4 font-mono text-[10px] uppercase">
-                          <div className="bg-neutral-900/60 p-2 border border-white/5">
-                            <span className="text-neutral-500 block">Span Highway Miles</span>
-                            <span className="text-white font-bold block">{calculatedQuote.miles} road miles</span>
-                          </div>
-                          <div className="bg-neutral-900/60 p-2 border border-white/5">
-                            <span className="text-neutral-500 block">Est Drive duration</span>
-                            <span className="text-orange-500 font-bold block">{calculatedQuote.transitDays} drive days</span>
-                          </div>
+                        {/* Destination */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Destination Terminal</label>
+                          <select
+                            value={destination}
+                            onChange={(e) => setDestination(e.target.value)}
+                            className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white uppercase focus:outline-none focus:border-orange-500 rounded-sm font-sans"
+                          >
+                            {CITIES.map((c) => (
+                              <option key={`dest-${c.name}`} value={`${c.name}, ${c.state}`}>{c.name}, {c.state}</option>
+                            ))}
+                          </select>
                         </div>
                       </div>
 
-                      {/* Lock the rate sub-form */}
-                      <form onSubmit={handleBookDispatch} className="space-y-3">
-                        <span className="block text-[10px] font-mono text-neutral-500 uppercase font-bold">Lock this dispatch lane with Chicago Dispatch</span>
-                        <div className="grid grid-cols-2 gap-3">
+                      <div className="grid grid-cols-2 gap-4">
+                        {/* Class */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Trailer Type</label>
+                          <select
+                            value={freightType}
+                            onChange={(e) => setFreightType(e.target.value)}
+                            className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-[#F5F5F5] focus:outline-none focus:border-orange-500 rounded-sm font-sans"
+                          >
+                            <option value="ftl">Dry Van (53ft Air Ride)</option>
+                            <option value="reefer">Refrigerated (Thermo)</option>
+                            <option value="ltl">Staged Cargo (LTL)</option>
+                          </select>
+                        </div>
+
+                        {/* Weight */}
+                        <div className="flex flex-col gap-1.5">
+                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Est. Payload (lbs)</label>
                           <input
-                            type="text"
-                            required
-                            placeholder="Corporate Shipper Name"
-                            value={shipperCompany}
-                            onChange={(e) => setShipperCompany(e.target.value)}
-                            className="h-9 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none placeholder-neutral-700 rounded-sm font-sans"
-                          />
-                          <input
-                            type="email"
-                            required
-                            placeholder="Enterprise Email address"
-                            value={shipperEmail}
-                            onChange={(e) => setShipperEmail(e.target.value)}
-                            className="h-9 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none placeholder-neutral-700 rounded-sm font-sans"
+                            type="number"
+                            min="1"
+                            max="48000"
+                            value={weight}
+                            onChange={(e) => setWeight(parseInt(e.target.value) || 0)}
+                            className="h-10 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none focus:border-orange-500 rounded-sm font-sans"
                           />
                         </div>
-                        <button
-                          type="submit"
-                          className="w-full py-2.5 bg-orange-500 text-black font-bold text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-colors cursor-pointer rounded-xs"
-                        >
-                          Submit Manifest for Booking Review
-                        </button>
-                      </form>
-                    </motion.div>
-                  )}
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="booking-success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-12 text-center"
-                >
-                  <div className="w-12 h-12 rounded-full bg-emerald-950/40 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-5">
-                    <CheckCircle2 className="w-6 h-6 animate-pulse" />
-                  </div>
-                  <h3 className="font-display font-bold text-sm tracking-wide text-white uppercase">
-                    Route Manifest Staged
-                  </h3>
-                  <p className="text-xs text-neutral-400 leading-relaxed max-w-sm mt-3 font-light">
-                    Our regional routes coordinator at Chicago Core Terminal has received your dispatch bounds. We will verify weather indexes and dispatch driver availability, sending a clean locked agreement contract to <span className="text-white font-bold">{shipperEmail}</span> under 15 minutes.
-                  </p>
-                  <button
-                    onClick={() => {
-                      setFormSubmitted(false);
-                      setCalculatedQuote(null);
-                      setShipperEmail("");
-                      setShipperCompany("");
-                    }}
-                    className="mt-6 text-[10px] font-mono text-orange-500 uppercase tracking-widest hover:underline cursor-pointer"
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full h-11 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-orange-500 transition-colors mt-2"
+                      >
+                        Calculate Instant Route Bracket
+                      </button>
+                    </form>
+
+                    {calculatedQuote && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-6 pt-6 border-t border-white/5 space-y-6"
+                      >
+                        <div className="bg-neutral-950 p-5 rounded-sm border border-white/10 flex flex-col gap-4 relative overflow-hidden">
+                          <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none" />
+                          
+                          <div className="flex justify-between items-center text-[9px] font-mono text-neutral-500 uppercase">
+                            <span>Calculated Cost bracket</span>
+                            <span className="text-emerald-400">Market index locked</span>
+                          </div>
+
+                          <div className="flex items-baseline gap-2">
+                            <span className="text-3xl sm:text-4xl font-display font-bold text-white flex items-center">
+                              <DollarSign className="w-5 h-5 text-orange-500 self-center" />
+                              {calculatedQuote.cost.toLocaleString()}
+                            </span>
+                            <span className="text-[10px] font-mono text-neutral-500 uppercase">Est. Gross U.S.D</span>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-4 font-mono text-[10px] uppercase">
+                            <div className="bg-neutral-900/60 p-2 border border-white/5">
+                              <span className="text-neutral-500 block">Span Highway Miles</span>
+                              <span className="text-white font-bold block">{calculatedQuote.miles} road miles</span>
+                            </div>
+                            <div className="bg-neutral-900/60 p-2 border border-white/5">
+                              <span className="text-neutral-500 block">Est Drive duration</span>
+                              <span className="text-orange-500 font-bold block">{calculatedQuote.transitDays} drive days</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Lock the rate sub-form */}
+                        <form onSubmit={handleBookDispatch} className="space-y-3">
+                          <span className="block text-[10px] font-mono text-neutral-500 uppercase font-bold">Lock this dispatch lane with Chicago Dispatch</span>
+                          <div className="grid grid-cols-2 gap-3">
+                            <input
+                              type="text"
+                              required
+                              placeholder="Corporate Shipper Name"
+                              value={shipperCompany}
+                              onChange={(e) => setShipperCompany(e.target.value)}
+                              className="h-9 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none placeholder-neutral-700 rounded-sm font-sans"
+                            />
+                            <input
+                              type="email"
+                              required
+                              placeholder="Enterprise Email address"
+                              value={shipperEmail}
+                              onChange={(e) => setShipperEmail(e.target.value)}
+                              className="h-9 px-3 bg-neutral-950 border border-white/10 text-xs text-white focus:outline-none placeholder-neutral-700 rounded-sm font-sans"
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            className="w-full py-2.5 bg-orange-500 text-black font-bold text-[10px] uppercase tracking-widest hover:bg-orange-600 transition-colors cursor-pointer rounded-xs"
+                          >
+                            Submit Manifest for Booking Review
+                          </button>
+                        </form>
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="booking-success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center py-12 text-center"
                   >
-                    Estimate another transit lane
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                    <div className="w-12 h-12 rounded-full bg-emerald-950/40 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-5">
+                      <CheckCircle2 className="w-6 h-6 animate-pulse" />
+                    </div>
+                    <h3 className="font-display font-bold text-sm tracking-wide text-white uppercase">
+                      Route Manifest Staged
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed max-w-sm mt-3 font-light">
+                      Our regional routes coordinator at Chicago Core Terminal has received your dispatch bounds. We will verify weather indexes and dispatch driver availability, sending a clean locked agreement contract to <span className="text-white font-bold">{shipperEmail}</span> under 15 minutes.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setFormSubmitted(false);
+                        setCalculatedQuote(null);
+                        setShipperEmail("");
+                        setShipperCompany("");
+                      }}
+                      className="mt-6 text-[10px] font-mono text-orange-505 text-orange-500 uppercase tracking-widest hover:underline cursor-pointer"
+                    >
+                      Estimate another transit lane
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )}
 
           {/* Right: Terminal HQ Addresses & support details */}
-          <div className="lg:col-span-così lg:col-span-5 space-y-6">
+          <div className={FEATURES.ENABLE_ESTIMATE_CALCULATOR ? "lg:col-span-5 space-y-6" : "space-y-6"}>
             
             <div className="bg-neutral-900/10 border border-white/5 p-6 rounded-sm">
-              <span className="text-[10px] font-mono text-neutral-500 uppercase block mb-4">Central Dispatch Lines</span>
+              <span className="eyebrow-label-sm text-neutral-500 block mb-4">Central Dispatch Lines</span>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-neutral-950 border border-white/5 text-orange-550 rounded-sm text-[#f97316]">
+                  <div className="p-2.5 bg-neutral-950 border border-white/5 text-[#f97316] rounded-sm">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-neutral-500 block uppercase">24/7 Command Call Line</span>
+                    <span className="eyebrow-label-sm text-neutral-500 block">24/7 Command Call Line</span>
                     <a href="tel:18005550190" className="text-xs font-bold text-white hover:text-orange-500 transition-colors uppercase">
                       +1 (800) 555-0190 (Skyhaul Line)
                     </a>
@@ -331,11 +334,11 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-neutral-950 border border-white/5 text-orange-550 rounded-sm text-[#f97316]">
+                  <div className="p-2.5 bg-neutral-950 border border-white/5 text-[#f97316] rounded-sm">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-mono text-neutral-500 block uppercase">Brokerage Operations Email</span>
+                    <span className="eyebrow-label-sm text-neutral-500 block">Brokerage Operations Email</span>
                     <a href="mailto:dispatch@skyhaultransit.com" className="text-xs font-bold text-white hover:text-orange-500 transition-colors">
                       dispatch@skyhaultransit.com
                     </a>
@@ -345,7 +348,7 @@ export default function Contact() {
             </div>
 
             {/* list of Office Terminals */}
-            <span className="text-[10px] font-mono text-neutral-500 uppercase block font-bold tracking-widest">Authorized Logistics Terminals</span>
+            <span className="eyebrow-label-sm text-neutral-500 block font-bold">Authorized Logistics Terminals</span>
             <div className="space-y-4">
               {OFFICE_TERMINALS.map((t, idx) => (
                 <div key={idx} className="bg-neutral-950 border border-white/5 p-4 rounded-sm font-mono text-[11px] uppercase">

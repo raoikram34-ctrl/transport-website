@@ -14,6 +14,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import OperationsGuide from "@/components/sections/OperationsGuide";
 import MagneticButton from "@/components/shared/MagneticButton";
 import GSAPScrollReveal from "@/components/widgets/GSAPScrollReveal";
+import { FEATURES } from "@/utils/featureFlags";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -276,7 +277,7 @@ export default function Home() {
                   animate={{ y: "0%" }}
                   exit={{ y: "-100%" }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 text-[10px] font-bold tracking-[0.4em] uppercase text-[#f97316]"
+                  className="flex items-center gap-3 eyebrow-label text-[#f97316]"
                 >
                   <span className="w-6 h-px bg-[#f97316]" />
                   {currentScene.tagline}
@@ -320,11 +321,11 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-6">
               <MagneticButton
-  onClick={() => router.push("/contact")}
-  className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-500 transition-all duration-300"
->
-  Estimate Dispatch Cost
-</MagneticButton>
+                onClick={() => router.push("/contact")}
+                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-500 transition-all duration-300"
+              >
+                Request Dispatch Quote
+              </MagneticButton>
 
               <button
                 onClick={() => router.push("/about")}
@@ -336,7 +337,7 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-center gap-6 lg:border-l lg:border-white/5 lg:pl-10">
-            <span className="text-[9px] font-mono uppercase tracking-[0.3em] text-neutral-500 block">
+            <span className="eyebrow-label-sm text-neutral-500 block">
               Active Fleet Corridors
             </span>
 
@@ -426,7 +427,7 @@ export default function Home() {
           <GSAPScrollReveal effect="slide-up">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
               <div className="max-w-3xl">
-                <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-3">
+                <span className="eyebrow-label text-orange-500 block mb-3">
                   Core Service Portfolios
                 </span>
                 <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight">
@@ -507,7 +508,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <GSAPScrollReveal effect="slide-right" className="lg:col-span-7">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-3">
+              <span className="eyebrow-label text-orange-500 block mb-3">
                 Logistics Safety Standards
               </span>
               <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight mb-6">
@@ -608,40 +609,42 @@ export default function Home() {
 
 
       {/* 8. INTERACTIVE NATIONAL COVERAGE */}
-      <CoverageMap />
+      {FEATURES.ENABLE_COVERAGE_MAP && <CoverageMap />}
 
       {/* 9. INSTANT SYSTEM TRACKING GATEWAY BAR */}
-      <section className="relative py-16 bg-[#050505] border-t border-b border-white/5">
-        <GSAPScrollReveal effect="zoom-in" duration={1} className="max-w-5xl mx-auto px-6 text-center">
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-2">
-              Interstate Telemetry Hub
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight mb-4">
-              TRACK AND RECORD CARGO IN REAL TIME.
-            </h2>
-            <p className="text-xs text-neutral-400 max-w-xl mx-auto leading-relaxed mb-8">
-              Access active satellite driver shifts, geo-position indexes, and electronic signatures directly. Ensure high caliber precision for active route brackets.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              
-              <MagneticButton
-                onClick={() => router.push("/tracking")}
-                className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-500 transition-all duration-300"
-              >
-                Access Dispatch Tracker
-              </MagneticButton>
+      {FEATURES.ENABLE_LIVE_TRACKER && (
+        <section className="relative py-16 bg-[#050505] border-t border-b border-white/5">
+          <GSAPScrollReveal effect="zoom-in" duration={1} className="max-w-5xl mx-auto px-6 text-center">
+            <div>
+              <span className="eyebrow-label text-orange-500 block mb-2">
+                Interstate Telemetry Hub
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight mb-4">
+                TRACK AND RECORD CARGO IN REAL TIME.
+              </h2>
+              <p className="text-xs text-neutral-400 max-w-xl mx-auto leading-relaxed mb-8">
+                Access active satellite driver shifts, geo-position indexes, and electronic signatures directly. Ensure high caliber precision for active route brackets.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                
+                <MagneticButton
+                  onClick={() => router.push("/tracking")}
+                  className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black text-xs font-bold tracking-widest uppercase hover:bg-orange-500 transition-all duration-300"
+                >
+                  Access Dispatch Tracker
+                </MagneticButton>
 
-              <button
-                onClick={() => router.push("/contact")}
-                className="border border-white/10 text-white font-bold text-xs uppercase tracking-widest px-8 h-12 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
-              >
-                Open Cost Calculator
-              </button>
+                <button
+                  onClick={() => router.push("/contact")}
+                  className="border border-white/10 text-white font-bold text-xs uppercase tracking-widest px-8 h-12 flex items-center justify-center hover:bg-white hover:text-black hover:border-white transition-all cursor-pointer"
+                >
+                  Request Quote
+                </button>
+              </div>
             </div>
-          </div>
-        </GSAPScrollReveal>
-      </section>
+          </GSAPScrollReveal>
+        </section>
+      )}
 
 
 {/* 10. Blogs  */}

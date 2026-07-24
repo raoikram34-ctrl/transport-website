@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, use } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Truck, Shuffle, Box, Layers, Zap, ShieldAlert, ArrowLeft, ShieldCheck, Clock, MapPin, Calculator, HelpCircle, ChevronDown } from "lucide-react";
+import { Truck, Shuffle, Box, Layers, Zap, ShieldAlert, ArrowLeft, ShieldCheck, Clock, MapPin, Calculator, HelpCircle, ChevronDown, Mail } from "lucide-react";
 import { SERVICES_DATA, ServiceDetailType } from "@/data/servicesData";
 import { useRouter } from "next/navigation";
 
@@ -87,7 +87,7 @@ export default function ServiceDetail({ params }: PageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-start">
           
           <div className="lg:col-span-8">
-            <span className="text-[10px] uppercase tracking-[0.4em] font-mono text-orange-500 font-bold block mb-3">
+            <span className="eyebrow-label text-orange-500 block mb-3">
               Fleet Specification Dossier
             </span>
             <h1 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight uppercase mb-6">
@@ -174,15 +174,15 @@ export default function ServiceDetail({ params }: PageProps) {
               
               <h2 className="text-xs font-mono uppercase tracking-widest text-neutral-400 font-bold mb-2">Configure Service Booking</h2>
               <p className="text-[11px] text-neutral-400 leading-relaxed font-light mb-6">
-                Ready to secure a transport agreement for this exact pipeline? Launch our cost estimator with specialized selectors preset.
+                Ready to secure a transport agreement for this exact pipeline? Contact our dispatch office to get a custom route quote.
               </p>
 
               <button
                 onClick={() => router.push("/contact")}
                 className="w-full h-11 bg-white text-black font-bold text-[10px] uppercase tracking-widest hover:bg-orange-500 hover:text-black transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer rounded-xs"
               >
-                <Calculator className="w-4 h-4" />
-                Calculate Route Cost
+                <Mail className="w-4 h-4" />
+                Inquire Route Quote
               </button>
             </div>
 
@@ -204,7 +204,7 @@ export default function ServiceDetail({ params }: PageProps) {
         {/* Dynamic FAQ Segment */}
         <div className="border-t border-white/5 pt-16 mb-16">
           <div className="max-w-3xl mb-10">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-[#f97316] font-bold block mb-2">
+            <span className="eyebrow-label text-[#f97316] block mb-2">
               Resource Library
             </span>
             <h2 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight">

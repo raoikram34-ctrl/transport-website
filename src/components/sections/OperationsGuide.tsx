@@ -76,7 +76,7 @@ export default function OperationsGuide() {
         <div id="choose-us-section" className="mb-24">
           <GSAPScrollReveal effect="slide-up" className="max-w-3xl mb-16">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-500 font-bold block mb-2">
+              <span className="eyebrow-label text-orange-500 block mb-2">
                 Competitive Advantage
               </span>
               <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight leading-none">
@@ -115,7 +115,7 @@ export default function OperationsGuide() {
         <div id="process" className="py-16 border-t border-white/5 mb-24">
           <GSAPScrollReveal effect="slide-up" className="max-w-3xl mb-16">
             <div>
-              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-505 text-orange-500 font-bold block mb-2">
+              <span className="eyebrow-label text-orange-555 text-orange-500 block mb-2">
                 Distribution Workflow
               </span>
               <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight leading-none">
@@ -160,7 +160,7 @@ export default function OperationsGuide() {
 
           {/* Recruit content (Left) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-orange-505 text-orange-500 font-bold block mb-3">
+            <span className="eyebrow-label text-orange-555 text-orange-500 block mb-3">
               Careers & Opportunities
             </span>
             <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight leading-none mb-6">

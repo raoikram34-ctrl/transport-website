@@ -3,6 +3,7 @@
 import React from "react";
 import { ArrowUp, Mail, Shield, Award, Clock } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { FEATURES } from "@/utils/featureFlags";
 
 export default function Footer() {
   const router = useRouter();
@@ -47,22 +48,24 @@ export default function Footer() {
         {/* Navigation columns */}
         <div id="footer-navigation" className="grid grid-cols-2 gap-8 md:col-span-2">
           <div>
-            <span className="block font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-500 mb-4 font-bold">Solutions</span>
+            <span className="block eyebrow-label-sm text-neutral-500 mb-4 font-bold">Solutions</span>
             <ul className="flex flex-col gap-2.5 text-xs text-neutral-400 font-sans">
               <li><a href="/services/dry-van" onClick={(e) => handleLinkClick(e, "/services/dry-van")} className="hover:text-orange-500 transition-colors uppercase">Dry Van FTL</a></li>
               <li><a href="/services/refrigerated" onClick={(e) => handleLinkClick(e, "/services/refrigerated")} className="hover:text-orange-500 transition-colors uppercase">Refrigerated Chains</a></li>
               <li><a href="/services/flatbed" onClick={(e) => handleLinkClick(e, "/services/flatbed")} className="hover:text-orange-500 transition-colors uppercase">Stepdeck & Flatbed</a></li>
-              <li><a href="/services/logistics-brokerage" onClick={(e) => handleLinkClick(e, "/services/logistics-brokerage")} className="hover:text-orange-550 hover:text-orange-500 transition-colors uppercase">3PL Brokerage</a></li>
+              <li><a href="/services/logistics-brokerage" onClick={(e) => handleLinkClick(e, "/services/logistics-brokerage")} className="hover:text-orange-555 hover:text-orange-500 transition-colors uppercase">3PL Brokerage</a></li>
               <li><a href="/services/dedicated-fleets" onClick={(e) => handleLinkClick(e, "/services/dedicated-fleets")} className="hover:text-orange-500 transition-colors uppercase">Dedicated Fleet</a></li>
             </ul>
           </div>
           <div>
-            <span className="block font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-500 mb-4 font-bold">Operations</span>
+            <span className="block eyebrow-label-sm text-neutral-500 mb-4 font-bold">Operations</span>
             <ul className="flex flex-col gap-2.5 text-xs text-neutral-400 font-sans">
               <li><a href="/" onClick={(e) => handleLinkClick(e, "/")} className="hover:text-orange-500 transition-colors uppercase">National Routes</a></li>
               <li><a href="/about" onClick={(e) => handleLinkClick(e, "/about")} className="hover:text-orange-500 transition-colors uppercase">Corporate Profile</a></li>
               <li><a href="/careers" onClick={(e) => handleLinkClick(e, "/careers")} className="hover:text-orange-500 transition-colors uppercase">Careers Portal</a></li>
-              <li><a href="/tracking" onClick={(e) => handleLinkClick(e, "/tracking")} className="hover:text-orange-500 transition-colors uppercase">Satellite Tracker</a></li>
+              {FEATURES.ENABLE_LIVE_TRACKER && (
+                <li><a href="/tracking" onClick={(e) => handleLinkClick(e, "/tracking")} className="hover:text-orange-500 transition-colors uppercase">Satellite Tracker</a></li>
+              )}
               <li><a href="/contact" onClick={(e) => handleLinkClick(e, "/contact")} className="hover:text-orange-500 transition-colors uppercase">Shipper Gateway</a></li>
             </ul>
           </div>
@@ -71,7 +74,7 @@ export default function Footer() {
         {/* Subscribe & Live Stats */}
         <div id="footer-subscribe" className="flex flex-col gap-5">
           <div>
-            <span className="block font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-500 mb-4 font-bold">Dispatch Updates</span>
+            <span className="block eyebrow-label-sm text-neutral-500 mb-4 font-bold">Dispatch Updates</span>
             <form onSubmit={handleSubscribe} className="flex h-10 border border-white/10 rounded-sm overflow-hidden bg-neutral-950">
               <input
                 type="email"

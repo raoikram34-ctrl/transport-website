@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, ArrowRight, ShieldCheck, Activity } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import { FEATURES } from "@/utils/featureFlags";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -62,7 +63,7 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8 font-mono text-[10px] tracking-[0.2em] uppercase text-neutral-400">
+        <div className="hidden lg:flex items-center gap-8 font-mono text-[12px] tracking-[0.15em] uppercase text-neutral-400">
           {menuItems.map((item) => {
             const isActive = 
               pathname === item.href || 
@@ -85,22 +86,24 @@ export default function Navbar() {
             );
           })}
           
-          <button
-            onClick={(e) => handleLinkClick(e as any, "/tracking")}
-            className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase ${
-              pathname === "/tracking" ? "text-[#f97316]" : "hover:text-orange-500"
-            }`}
-          >
-            <Activity className="w-3 h-3 text-orange-500 animate-pulse" />
-            Live Tracker
-          </button>
+          {FEATURES.ENABLE_LIVE_TRACKER && (
+            <button
+              onClick={(e) => handleLinkClick(e as any, "/tracking")}
+              className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase ${
+                pathname === "/tracking" ? "text-[#f97316]" : "hover:text-orange-500"
+              }`}
+            >
+              <Activity className="w-3 h-3 text-orange-500 animate-pulse" />
+              Live Tracker
+            </button>
+          )}
         </div>
 
         {/* Action Button & Menu Toggle */}
         <div className="flex items-center gap-4">
           <button
             onClick={(e) => handleLinkClick(e as any, "/contact")}
-            className="hidden sm:inline-flex px-5 py-2 border border-white/10 text-[9px] font-bold tracking-widest uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
+            className="hidden sm:inline-flex px-5 py-2 border border-white/10 text-[11px] font-bold tracking-widest uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
             Client gateway
           </button>
@@ -126,7 +129,7 @@ export default function Navbar() {
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="fixed top-20 left-0 right-0 bg-[#050505] border-b border-white/10 z-40 p-8 flex flex-col gap-6 lg:hidden"
           >
-            <div className="flex flex-col gap-4 font-mono text-xs tracking-widest uppercase text-neutral-400">
+            <div className="flex flex-col gap-4 font-mono text-[13px] tracking-widest uppercase text-neutral-400">
               {menuItems.map((item) => (
                 <a
                   key={item.label}
@@ -138,16 +141,18 @@ export default function Navbar() {
                   <ArrowRight className="w-3 h-3 text-orange-500" />
                 </a>
               ))}
-              <button
-                onClick={(e) => handleLinkClick(e as any, "/tracking")}
-                className="py-2 text-left hover:text-white border-b border-white/5 flex items-center justify-between"
-              >
-                <span className="flex items-center gap-2">
-                  <Activity className="w-3 h-3 text-orange-500 animate-pulse" />
-                  Live Tracker
-                </span>
-                <ArrowRight className="w-3 h-3 text-orange-550 text-orange-500" />
-              </button>
+              {FEATURES.ENABLE_LIVE_TRACKER && (
+                <button
+                  onClick={(e) => handleLinkClick(e as any, "/tracking")}
+                  className="py-2 text-left hover:text-white border-b border-white/5 flex items-center justify-between"
+                >
+                  <span className="flex items-center gap-2">
+                    <Activity className="w-3 h-3 text-orange-500 animate-pulse" />
+                    Live Tracker
+                  </span>
+                  <ArrowRight className="w-3 h-3 text-orange-550 text-orange-500" />
+                </button>
+              )}
             </div>
 
             <div className="flex flex-col gap-3 pt-2">

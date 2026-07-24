@@ -3,9 +3,13 @@
 import React, { useState, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "motion/react";
 import { Search, Loader2, Compass, ShieldCheck, MapPin, Truck, AlertTriangle, Snowflake, Activity } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, notFound } from "next/navigation";
+import { FEATURES } from "@/utils/featureFlags";
 
 export default function Tracking() {
+  if (!FEATURES.ENABLE_LIVE_TRACKER) {
+    notFound();
+  }
   const router = useRouter();
   const [trackingId, setTrackingId] = useState("TRK-492-990-21");
   const [loading, setLoading] = useState(false);
