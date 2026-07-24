@@ -69,7 +69,7 @@ export default function BlogDetailPage({ params }: PageProps) {
             Back to All Insights
           </button>
 
-          <div className="flex items-center gap-2 font-mono text-[9px] text-neutral-500 uppercase tracking-widest">
+          <div className="flex items-center gap-2 font-mono text-[11px] text-neutral-500 uppercase tracking-widest inner-text">
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/blogs")}>Blogs</span>
@@ -79,7 +79,7 @@ export default function BlogDetailPage({ params }: PageProps) {
         </div>
 
         {/* Hero Section of the Blog Post */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-3xl mb-16">
           <div className="flex flex-wrap items-center gap-3 text-[10px] font-mono text-orange-500 uppercase tracking-widest mb-4">
             <span className="bg-orange-500/10 border border-orange-500/20 px-2 py-0.5 rounded-sm">
               {post.category.replace("_", " ")}
@@ -90,11 +90,11 @@ export default function BlogDetailPage({ params }: PageProps) {
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-5xl font-display font-medium text-white tracking-tight leading-tight uppercase mb-6">
+          <h1 className="primary-heading text-2xl sm:text-5xl font-medium text-white tracking-tight leading-tight uppercase mb-6">
             {post.title}
           </h1>
 
-          <div className="flex items-center gap-6 border-y border-white/5 py-4 font-mono text-[10px] text-neutral-400 uppercase">
+          <div className="flex items-center gap-6 border-y border-white/5 py-4 font-mono text-[10px] text-neutral-400 uppercase inner-text">
             <div className="flex items-center gap-2">
               <User className="w-4 h-4 text-[#f97316]" />
               <span>Written by <strong className="text-white">{post.author}</strong></span>
@@ -127,7 +127,7 @@ export default function BlogDetailPage({ params }: PageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 max-w-5xl mx-auto items-start">
           
           {/* Post Content */}
-          <div className="lg:col-span-8 space-y-6 text-neutral-300 leading-relaxed font-light text-sm sm:text-base">
+          <div className="lg:col-span-8 space-y-6 text-neutral-300 leading-relaxed font-light text-sm sm:text-base main-text">
             {paragraphs.map((para, idx) => {
               // Simple parser for headings in markdown content
               if (para.startsWith("# ")) {
@@ -159,7 +159,7 @@ export default function BlogDetailPage({ params }: PageProps) {
                 );
               }
               return (
-                <p key={idx} className="font-sans leading-relaxed text-neutral-400">
+                <p key={idx} className="main-text font-sans leading-relaxed text-neutral-400">
                   {para}
                 </p>
               );
@@ -171,10 +171,10 @@ export default function BlogDetailPage({ params }: PageProps) {
             
             {/* Share Post box */}
             <div className="bg-neutral-900/30 border border-white/5 p-6 rounded-sm">
-              <h3 className="font-mono text-xs uppercase text-neutral-400 font-bold tracking-widest mb-4 flex items-center gap-2">
+              <h3 className="eyebrow-heading text-neutral-400 mb-4 flex items-center gap-2">
                 <Share2 className="w-4 h-4 text-orange-500" /> Share This Dossier
               </h3>
-              <p className="text-[11px] text-neutral-500 leading-relaxed mb-4">
+              <p className="inner-text text-[11px] text-neutral-500 leading-relaxed mb-4">
                 Distribute this technical operational memo across your professional logistics circles.
               </p>
               <button 
@@ -182,7 +182,7 @@ export default function BlogDetailPage({ params }: PageProps) {
                   navigator.clipboard.writeText(window.location.href);
                   alert("Link copied to clipboard!");
                 }}
-                className="w-full py-2.5 border border-white/10 hover:border-orange-500 hover:text-orange-500 font-mono text-[9px] uppercase tracking-wider transition-colors rounded-xs cursor-pointer text-center"
+                className="inner-heading w-full py-2.5 border border-white/10 hover:border-orange-500 hover:text-orange-500 font-mono text-[11px] uppercase tracking-wider transition-colors rounded-xs cursor-pointer text-center"
               >
                 Copy Memo URL Link
               </button>
@@ -190,22 +190,22 @@ export default function BlogDetailPage({ params }: PageProps) {
 
             {/* Vetted Authority Badget */}
             <div className="bg-[#0a0a0c] border border-white/5 p-6 rounded-sm space-y-4">
-              <h3 className="font-mono text-xs uppercase text-neutral-400 font-bold tracking-widest mb-2 flex items-center gap-2">
+               <h3 className="eyebrow-heading text-neutral-400 mb-2 flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-orange-500" /> Recent Dispatch Memos
               </h3>
               <div className="divide-y divide-white/5">
                 {recentPosts.map((item) => (
                   <div key={item.id} className="py-4 first:pt-0 last:pb-0 group">
-                    <span className="text-[8px] font-mono text-orange-500 uppercase tracking-widest block mb-1">
+                    <span className="inner-text text-[8px] font-mono text-orange-500 uppercase tracking-widest block mb-1">
                       {item.category.replace("_", " ")}
                     </span>
                     <button
                       onClick={() => router.push(`/blogs/${item.id}`)}
-                      className="text-left font-display text-xs font-semibold text-white group-hover:text-orange-400 transition-colors uppercase leading-snug tracking-wide cursor-pointer"
+                      className="inner-heading text-left text-xs font-semibold text-white group-hover:text-orange-400 transition-colors uppercase leading-snug tracking-wide cursor-pointer"
                     >
                       {item.title}
                     </button>
-                    <span className="text-[9px] font-mono text-neutral-500 block mt-2">{item.date}</span>
+                    <span className="inner-text text-[11px] font-mono text-neutral-500 block mt-2">{item.date}</span>
                   </div>
                 ))}
               </div>

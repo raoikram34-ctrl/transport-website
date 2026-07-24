@@ -32,18 +32,18 @@ export default function ServicesParent() {
         
         {/* Title / Breadcrumbs */}
         <div ref={headingRef} className="max-w-3xl mb-16">
-          <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[#f97316] mb-4">
+          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#f97316] mb-4">
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="text-white">Our Logistics Portfolios</span>
           </div>
-          <span className="eyebrow-label text-orange-555 text-orange-500 block mb-3">
+          <span className="eyebrow-heading text-orange-555 text-orange-500 block mb-3">
             Service Command Core
           </span>
-          <h1 className="text-4xl sm:text-6xl font-display font-bold text-white tracking-tight leading-none">
+          <h1 className="primary-heading text-4xl sm:text-6xl font-bold text-white tracking-tight leading-none">
             INTEGRATED SHIPPING PORTFOLIONS.
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-4 leading-relaxed font-light">
+          <p className="main-text text-xs sm:text-sm text-neutral-400 mt-4 leading-relaxed font-light">
             Skyhaul Transit LLC serves premium enterprise networks with safe, asset-backed logistics across the 48 contiguous states. Choose a shipping module below to inspect full operational specs, equipment guidelines, and lane parameters.
           </p>
         </div>
@@ -78,32 +78,32 @@ export default function ServicesParent() {
                     <div className="p-3 bg-neutral-900 border border-white/5 group-hover:border-orange-500/20 group-hover:bg-orange-500/5 transition-all rounded-sm">
                       <IconComponent className="w-5 h-5 text-neutral-300 group-hover:text-orange-500 transition-colors" />
                     </div>
-                    <span className="text-[9px] font-mono text-neutral-600 tracking-wider uppercase group-hover:text-orange-500/70">
+                    <span className="eyebrow-heading text-[11px] text-neutral-600 tracking-wider group-hover:text-orange-500/70">
                       SVC // 0{idx + 1}
                     </span>
                   </div>
 
-                  <h2 className="text-base sm:text-md font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors flex items-center justify-between">
+                  <h2 className="inner-heading text-base sm:text-md font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors flex items-center justify-between">
                     {service.title}
                     <ArrowUpRight className="w-4 h-4 text-neutral-500 group-hover:text-orange-500 transition-colors" />
                   </h2>
-                  <p className="text-xs text-neutral-400 mt-3 leading-relaxed font-light min-h-[55px]">
+                  <p className="inner-text text-xs text-neutral-400 mt-3 leading-relaxed font-light min-h-[55px]">
                     {service.shortDesc}
                   </p>
 
                   {/* High level metrics preview */}
                   <div className="border-t border-white/5 pt-4 mt-6 space-y-2">
                     {service.specs.slice(0, 2).map((item, specIdx) => (
-                      <div key={specIdx} className="flex justify-between items-center text-[10px] font-mono bg-neutral-950 p-1.5 px-2 rounded-sm border border-white/5">
-                        <span className="text-neutral-500 uppercase">{item.label}</span>
-                        <span className="text-white font-bold">{item.value}</span>
+                      <div key={specIdx} className="inner-text flex justify-between items-center text-[11px] font-mono bg-neutral-950 p-1.5 px-2 rounded-sm border border-white/5">
+                        <span className="inner-text text-neutral-500 uppercase">{item.label}</span>
+                        <span className="inner-heading text-white font-bold">{item.value}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Micro Interaction Indicator */}
-                <div className="mt-6 flex items-center justify-between font-mono text-[9px] uppercase tracking-widest text-neutral-600 group-hover:text-[#f97316] transition-colors border-t border-white/5 pt-4">
+                <div className="inner-heading mt-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-widest text-neutral-600 group-hover:text-[#f97316] transition-colors border-t border-white/5 pt-4">
                   <span>View Full Logistics Specs</span>
                   <span className="font-bold">→</span>
                 </div>

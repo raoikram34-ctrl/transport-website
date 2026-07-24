@@ -104,18 +104,34 @@
   }
 }
 
-/* Global design system utilities for consistent section labels (eyebrows) */
-@utility eyebrow-label {
+/* Global typography utility classes for design management */
+@utility primary-heading {
+  font-family: var(--font-display);
+  
+}
+
+@utility secondary-heading {
+  font-family: var(--font-display);
+}
+
+@utility eyebrow-heading {
   font-family: var(--font-mono);
-  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.3em;
   font-weight: 700;
 }
 
-@utility eyebrow-label-sm {
-  font-family: var(--font-mono);
-  font-size: 11px;
+@utility inner-heading {
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
+}
+
+@utility main-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
+}
+
+@utility inner-text {
+  font-family: var(--font-sans);
+  font-weight: 300;
 }

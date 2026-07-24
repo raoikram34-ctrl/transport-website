@@ -38,7 +38,7 @@ function AnimatedDigit({ endValue, suffix = "", duration = 1500 }: CounterProps)
   }, [endValue, duration, isInView]);
 
   return (
-    <span ref={ref} className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tighter text-white">
+    <span ref={ref} className="primary-heading text-4xl sm:text-5xl lg:text-6xl font-black tracking-tighter text-white">
       {current.toLocaleString()}{suffix}
     </span>
   );
@@ -93,16 +93,16 @@ export default function Stats() {
         <GSAPScrollReveal effect="slide-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/5 pb-8">
             <div>
-              <span className="eyebrow-label text-orange-500 block mb-2">
+              <span className="eyebrow-heading text-orange-500 block mb-2">
                 Performance Indicators
               </span>
-              <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight">
+              <h2 className="secondary-heading text-2xl sm:text-4xl font-medium text-white tracking-tight">
                 Enterprise Trucking <br />
                 <span className="text-neutral-500 font-light">By The Numbers.</span>
               </h2>
             </div>
             <div className="max-w-md">
-              <p className="text-xs sm:text-sm text-neutral-450 leading-relaxed font-light">
+              <p className="main-text text-xs sm:text-sm text-neutral-450 leading-relaxed font-light">
                 We log and report our performance parameters to federal databases daily. Fully licensed, bonded ($1M), and compliant with major US supply-chain standards.
               </p>
             </div>
@@ -125,7 +125,7 @@ export default function Stats() {
                 </div>
 
                 {/* Simulated metric state */}
-                <span className="eyebrow-label-sm text-[#f97316] font-bold">
+                <span className="eyebrow-heading text-[#f97316] font-bold">
                   Telemetry 0{idx + 1}
                 </span>
 
@@ -136,10 +136,10 @@ export default function Stats() {
 
                 {/* Labels detailing performance */}
                 <div>
-                  <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wide text-neutral-200">
+                  <h3 className="inner-heading text-xs sm:text-sm font-semibold uppercase tracking-wide text-neutral-200">
                     {stat.label}
                   </h3>
-                  <p className="text-[11px] text-neutral-520 text-neutral-500 mt-1">
+                  <p className="inner-text text-[11px] text-neutral-500 mt-1">
                     {stat.subText}
                   </p>
                 </div>
@@ -152,12 +152,12 @@ export default function Stats() {
         </GSAPScrollReveal>
 
         {/* Dispatch statement summary */}
-        <div className="mt-16 bg-neutral-900/20 border border-white/5 p-6 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[10px] tracking-widest uppercase text-neutral-500">
+        <div className="inner-text mt-16 bg-neutral-900/20 border border-white/5 p-6 rounded-sm flex flex-col sm:flex-row items-center justify-between gap-6 font-mono text-[10px] tracking-widest uppercase text-neutral-500">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
             <span>DISPATCH INTELLIGENCE SYSTEM STREAMING LIVE</span>
           </div>
-          <span className="text-white font-bold">F.M.C.S.A Active Carrier ID: 3829029</span>
+          <span className="inner-heading text-white font-bold">F.M.C.S.A Active Carrier ID: 3829029</span>
         </div>
 
       </div>

@@ -76,13 +76,13 @@ export default function OperationsGuide() {
         <div id="choose-us-section" className="mb-24">
           <GSAPScrollReveal effect="slide-up" className="max-w-3xl mb-16">
             <div>
-              <span className="eyebrow-label text-orange-500 block mb-2">
+              <span className="eyebrow-heading text-orange-500 block mb-2">
                 Competitive Advantage
               </span>
-              <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight leading-none">
+              <h2 className="secondary-heading text-3xl sm:text-5xl font-medium text-white tracking-tight leading-none">
                 SAFEGUARDED ROAD LOGISTICS.
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-450 text-neutral-400 mt-4 leading-relaxed font-light">
+              <p className="main-text text-xs sm:text-sm text-neutral-450 mt-4 leading-relaxed font-light">
                 We eliminate cargo volatility. Through high-caliber driver screening, structural tracking, and smart telemetry integration, we offer perfect enterprise accountability.
               </p>
             </div>
@@ -99,10 +99,10 @@ export default function OperationsGuide() {
                   <div className="p-2.5 bg-neutral-950 border border-white/5 rounded-xs w-fit group-hover:border-[#f97316]/10 group-hover:bg-[#f97316]/5 transition-all">
                     <TraitIcon className="w-5 h-5 text-neutral-400 group-hover:text-orange-555 group-hover:text-orange-500 transition-colors" />
                   </div>
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-white group-hover:text-orange-500 transition-colors font-mono">
+                  <h3 className="inner-heading text-xs font-bold uppercase tracking-widest text-white group-hover:text-orange-500 transition-colors font-mono">
                     {trait.title}
                   </h3>
-                  <p className="text-[11px] text-neutral-455 text-neutral-400 leading-relaxed font-light">
+                  <p className="inner-text text-[11px] text-neutral-455 text-neutral-400 leading-relaxed font-light">
                     {trait.desc}
                   </p>
                 </div>
@@ -115,13 +115,13 @@ export default function OperationsGuide() {
         <div id="process" className="py-16 border-t border-white/5 mb-24">
           <GSAPScrollReveal effect="slide-up" className="max-w-3xl mb-16">
             <div>
-              <span className="eyebrow-label text-orange-555 text-orange-500 block mb-2">
+              <span className="eyebrow-heading text-orange-500 block mb-2">
                 Distribution Workflow
               </span>
-              <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight leading-none">
+              <h2 className="secondary-heading text-2xl sm:text-4xl font-medium text-white tracking-tight leading-none">
                 THE TRANSPORT TIMELINE.
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-455 text-neutral-400 mt-3 font-light leading-relaxed">
+              <p className="main-text text-xs sm:text-sm text-neutral-455 mt-3 font-light leading-relaxed">
                 Our 4-Stage standard transport cycle verifies safety parameter limits are logged at every checkpoint.
               </p>
             </div>
@@ -135,16 +135,16 @@ export default function OperationsGuide() {
                   <div className="absolute top-4 left-1/2 right-[-50%] h-px bg-gradient-to-r from-white/10 to-transparent hidden lg:block" />
                 )}
                 <div className="flex items-center gap-4">
-                  <div className="w-9 h-9 rounded-full bg-neutral-900/60 border border-white/10 flex items-center justify-center font-mono text-xs text-[#f97316] font-bold">
+                  <div className="inner-heading w-9 h-9 rounded-full bg-neutral-900/60 border border-white/10 flex items-center justify-center font-mono text-xs text-[#f97316] font-bold">
                     {step.id}
                   </div>
                   <div className="h-px flex-1 bg-white/5 lg:hidden" />
                 </div>
                 <div>
-                  <h3 className="text-xs sm:text-sm font-bold uppercase text-white tracking-wide">
+                  <h3 className="inner-heading text-xs sm:text-sm font-bold uppercase text-white tracking-wide">
                     {step.phase}
                   </h3>
-                  <p className="text-[11px] text-neutral-400 mt-2 leading-relaxed font-light">
+                  <p className="inner-text text-[11px] text-neutral-400 mt-2 leading-relaxed font-light">
                     {step.detail}
                   </p>
                 </div>
@@ -160,14 +160,14 @@ export default function OperationsGuide() {
 
           {/* Recruit content (Left) */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            <span className="eyebrow-label text-orange-555 text-orange-500 block mb-3">
+            <span className="eyebrow-heading text-orange-555 text-orange-500 block mb-3">
               Careers & Opportunities
             </span>
-            <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight leading-none mb-6">
+            <h2 className="secondary-heading text-2xl sm:text-4xl font-medium text-white tracking-tight leading-none mb-6">
               DRIVE FOR TITAN.
             </h2>
             
-            <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-light mb-8 max-w-xl">
+            <p className="main-text text-xs sm:text-sm text-neutral-405 leading-relaxed font-light mb-8 max-w-xl">
               We value Class-A operators. Our network respects your hours and safety logs. Drive late-model premium sleepers equipped with air-ride massage cabins and smart collision radars.
             </p>
 

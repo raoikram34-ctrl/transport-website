@@ -74,13 +74,13 @@ export default function FleetShowcase() {
         <GSAPScrollReveal effect="slide-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/5 pb-8">
             <div>
-              <span className="eyebrow-label text-orange-500 block mb-2">
+              <span className="eyebrow-heading text-orange-500 block mb-2">
                 Corporate Fleet Logistics
               </span>
-              <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight leading-none">
+              <h2 className="secondary-heading text-3xl sm:text-5xl font-medium text-white tracking-tight leading-none">
                 TITAN HEAVY TRACTORS.
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-450 text-neutral-400 mt-4 max-w-lg font-light leading-relaxed">
+              <p className="main-text text-xs sm:text-sm text-neutral-450 text-neutral-450 mt-4 max-w-lg font-light leading-relaxed">
                 We operate exclusively late-model luxury Class 8 tractors (avg age of 14 months) optimized for heavy payload fuel dynamics and high-end driver ergonomics.
               </p>
             </div>
@@ -94,7 +94,7 @@ export default function FleetShowcase() {
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <div className="px-4 py-2 bg-neutral-900 border border-white/5 rounded-xs text-[10px] font-mono tracking-widest text-[#f97316]">
+              <div className="inner-heading px-4 py-2 bg-neutral-900 border border-white/5 rounded-xs text-[10px] font-mono tracking-widest text-[#f97316]">
                 {activeIndex + 1} / {FLEET_INVENTORY.length}
               </div>
               <button
@@ -115,7 +115,7 @@ export default function FleetShowcase() {
           <GSAPScrollReveal effect="slide-right" className="lg:col-span-5 flex flex-col gap-6">
             <div>
               <div className="overflow-hidden mb-1">
-                <span className="text-[9px] font-mono bg-orange-950/40 text-orange-500 border border-orange-500/20 px-2.5 py-1 rounded-sm uppercase tracking-widest inline-block select-none">
+                <span className="inner-heading text-[9px] font-mono bg-orange-950/40 text-orange-500 border border-orange-500/20 px-2.5 py-1 rounded-sm uppercase tracking-widest inline-block select-none">
                   {activeTruck.class}
                 </span>
               </div>
@@ -126,49 +126,49 @@ export default function FleetShowcase() {
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
-                className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-tight"
+                className="inner-heading text-2xl sm:text-3xl font-extrabold text-white tracking-tight"
               >
                 {activeTruck.name}
               </motion.h3>
 
-              <p className="text-xs text-neutral-450 text-neutral-450 leading-relaxed font-light mt-4">
+              <p className="inner-text text-xs text-neutral-450 leading-relaxed font-light mt-4">
                 This unit operates with real-time satellite telemetry, smart load-scale sensors (which report directly to shipper manifests), and forward radar brakes.
               </p>
 
               {/* Specifications Cards list */}
-              <div className="flex flex-col gap-3 font-mono text-[10px] mt-6">
+              <div className="inner-text flex flex-col gap-3 font-mono text-[10px] mt-6">
                 <div className="flex justify-between items-center bg-neutral-950/40 p-3 rounded-sm border border-white/5 hover:border-white/10 transition-colors">
-                  <span className="text-neutral-500 uppercase flex items-center gap-1.5">
+                  <span className="inner-text text-neutral-500 uppercase flex items-center gap-1.5">
                     <Gauge className="w-3.5 h-3.5 text-orange-500" />
                     Active Gross Weight Limit
                   </span>
-                  <span className="text-white font-bold">{activeTruck.capacity}</span>
+                  <span className="inner-heading text-white font-bold">{activeTruck.capacity}</span>
                 </div>
                 
                 <div className="flex justify-between items-center bg-neutral-950/40 p-3 rounded-sm border border-white/5 hover:border-white/10 transition-colors">
-                  <span className="text-neutral-500 uppercase flex items-center gap-1.5">
+                  <span className="inner-text text-neutral-500 uppercase flex items-center gap-1.5">
                     <Milestone className="w-3.5 h-3.5 text-orange-500" />
                     Maximum Range Capability
                   </span>
-                  <span className="text-white font-bold">{activeTruck.range}</span>
+                  <span className="inner-heading text-white font-bold">{activeTruck.range}</span>
                 </div>
 
                 <div className="flex justify-between items-center bg-neutral-950/40 p-3 rounded-sm border border-white/5 hover:border-white/10 transition-colors">
-                  <span className="text-neutral-500 uppercase flex items-center gap-1.5">
+                  <span className="inner-text text-neutral-500 uppercase flex items-center gap-1.5">
                     <Shield className="w-3.5 h-3.5 text-orange-500" />
                     Safety Radar Integration
                   </span>
-                  <span className="text-white font-bold uppercase">Bendix Assurance Elite</span>
+                  <span className="inner-heading text-white font-bold uppercase">Bendix Assurance Elite</span>
                 </div>
               </div>
 
               {/* Key Features bullet points list */}
               <div className="flex flex-col gap-2.5 pt-6 border-t border-white/5 mt-6">
-                <span className="text-[9px] uppercase tracking-widest text-neutral-600 font-mono mb-1 block">Tractor Engineering Details</span>
+                <span className="eyebrow-heading text-[9px] text-neutral-600 mb-1 block">Tractor Engineering Details</span>
                 {activeTruck.features.map((feature, featureIdx) => (
                   <div key={featureIdx} className="flex items-center gap-3 text-xs text-neutral-350">
                     <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                    <span className="font-light">{feature}</span>
+                    <span className="inner-text font-light">{feature}</span>
                   </div>
                 ))}
               </div>

@@ -45,18 +45,18 @@ export default function BlogsPage() {
         
         {/* Navigation Breadcrumbs / Title */}
         <div className="max-w-3xl mb-16">
-          <div className="flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[#f97316] mb-4">
+          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#f97316] mb-4">
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="text-white">Blogs & Insights</span>
           </div>
-          <span className="eyebrow-label text-orange-555 text-orange-500 block mb-3">
+          <span className="eyebrow-heading text-orange-500 block mb-3">
             Knowledge Center
           </span>
-          <h1 className="text-4xl sm:text-6xl font-display font-bold text-white tracking-tight leading-none uppercase">
+          <h1 className="primary-heading text-4xl sm:text-6xl font-bold text-white tracking-tight leading-none uppercase">
             The Dispatch Memo.
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 mt-4 leading-relaxed font-light">
+          <p className="main-text text-xs sm:text-sm text-neutral-400 mt-4 leading-relaxed font-light">
             Stay up to date with the latest industry regulations, weather-routing technologies, intermodal operations, and 3PL freight capacity insights straight from our team.
           </p>
         </div>
@@ -72,7 +72,7 @@ export default function BlogsPage() {
                 <button
                   key={cat.value}
                   onClick={() => setSelectedCategory(cat.value)}
-                  className={`px-4 py-2 font-mono text-[10px] uppercase tracking-wider rounded-xs cursor-pointer transition-all border ${
+                  className={`px-4 py-2 font-mono text-[10px] uppercase tracking-wider rounded-xs cursor-pointer transition-all border inner-heading ${
                     isActive
                       ? "bg-white text-black border-white font-bold"
                       : "bg-[#0a0a0c]/80 text-neutral-400 border-white/5 hover:text-white hover:border-orange-500/30"
@@ -92,7 +92,7 @@ export default function BlogsPage() {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full h-10 bg-neutral-900/40 border border-white/5 rounded-xs pl-10 pr-4 text-xs font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/50 transition-colors"
+              className="w-full h-10 bg-neutral-900/40 border border-white/5 rounded-xs pl-10 pr-4 text-xs font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-orange-500/50 transition-colors inner-text"
             />
           </div>
 
@@ -132,7 +132,7 @@ export default function BlogsPage() {
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                      <div className="absolute top-4 left-4 text-[9px] font-mono uppercase tracking-wider text-orange-400 bg-black/60 border border-white/10 px-2 py-1 rounded-sm backdrop-blur">
+                      <div className="absolute top-4 left-4 text-[11px] font-mono uppercase tracking-wider text-orange-400 bg-black/60 border border-white/10 px-2 py-1 rounded-sm backdrop-blur eyebrow-heading">
                         {post.category.replace("_", " ")}
                       </div>
                     </div>
@@ -140,7 +140,7 @@ export default function BlogsPage() {
                     {/* CONTENT */}
                     <div className="p-6 flex flex-col gap-4">
                       {/* Meta */}
-                      <div className="flex items-center justify-between text-[10px] text-neutral-500 font-mono">
+                      <div className="flex items-center justify-between text-[11px] text-neutral-500 font-mono inner-text">
                         <span className="flex items-center gap-1.5">
                           <Calendar className="w-3.5 h-3.5 text-orange-500" />
                           {post.date}
@@ -152,12 +152,12 @@ export default function BlogsPage() {
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-white text-base font-semibold leading-snug group-hover:text-orange-400 transition-colors uppercase tracking-wide">
+                      <h3 className="inner-heading text-white text-base font-semibold leading-snug group-hover:text-orange-400 transition-colors uppercase tracking-wide">
                         {post.title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-xs text-neutral-400 leading-relaxed font-light">
+                      <p className="inner-text text-xs text-neutral-400 leading-relaxed font-light">
                         {post.excerpt}
                       </p>
                     </div>
@@ -165,7 +165,7 @@ export default function BlogsPage() {
 
                   {/* Card Footer */}
                   <div className="px-6 pb-6 mt-auto">
-                    <div className="flex items-center justify-between pt-4 border-t border-white/5 text-[9px] font-mono text-neutral-500">
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5 text-[11px] font-mono text-neutral-500 inner-text">
                       <span className="flex items-center gap-1.5">
                         <Eye className="w-3.5 h-3.5 text-neutral-650" />
                         {post.views}

@@ -57,7 +57,7 @@ export default function Navbar() {
           <div className="w-8 h-8 bg-neutral-100 flex items-center justify-center rounded-sm transition-transform duration-500 group-hover:rotate-180">
             <div className="w-4 h-4 bg-black rotate-45 transform origin-center" />
           </div>
-          <span className="text-md sm:text-lg font-bold tracking-tighter uppercase font-display text-white">
+          <span className="inner-heading text-md sm:text-lg font-bold tracking-tighter uppercase text-white">
             SKYHAUL<span className="text-orange-500 font-extralight opacity-80">TRANSIT</span>
           </span>
         </a>
@@ -74,7 +74,7 @@ export default function Navbar() {
                 key={item.label}
                 href={item.href}
                 onClick={(e) => handleLinkClick(e, item.href)}
-                className={`transition-colors duration-200 relative group uppercase ${
+                className={`inner-heading transition-colors duration-200 relative group uppercase ${
                   isActive ? "text-[#f97316]" : "hover:text-white"
                 }`}
               >
@@ -89,7 +89,7 @@ export default function Navbar() {
           {FEATURES.ENABLE_LIVE_TRACKER && (
             <button
               onClick={(e) => handleLinkClick(e as any, "/tracking")}
-              className={`flex items-center gap-1.5 transition-colors cursor-pointer uppercase ${
+              className={`inner-heading flex items-center gap-1.5 transition-colors cursor-pointer uppercase ${
                 pathname === "/tracking" ? "text-[#f97316]" : "hover:text-orange-500"
               }`}
             >
@@ -103,7 +103,7 @@ export default function Navbar() {
         <div className="flex items-center gap-4">
           <button
             onClick={(e) => handleLinkClick(e as any, "/contact")}
-            className="hidden sm:inline-flex px-5 py-2 border border-white/10 text-[11px] font-bold tracking-widest uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
+            className="inner-heading hidden sm:inline-flex px-5 py-2 border border-white/10 text-[12px] font-bold tracking-widest uppercase hover:bg-white hover:text-black hover:border-white transition-all duration-300 cursor-pointer"
           >
             Client gateway
           </button>
@@ -135,7 +135,7 @@ export default function Navbar() {
                   key={item.label}
                   href={item.href}
                   onClick={(e) => handleLinkClick(e, item.href)}
-                  className="hover:text-white transition-colors py-2 border-b border-white/5 flex items-center justify-between"
+                  className="inner-heading hover:text-white transition-colors py-2 border-b border-white/5 flex items-center justify-between"
                 >
                   {item.label}
                   <ArrowRight className="w-3 h-3 text-orange-500" />
@@ -144,7 +144,7 @@ export default function Navbar() {
               {FEATURES.ENABLE_LIVE_TRACKER && (
                 <button
                   onClick={(e) => handleLinkClick(e as any, "/tracking")}
-                  className="py-2 text-left hover:text-white border-b border-white/5 flex items-center justify-between"
+                  className="inner-heading py-2 text-left hover:text-white border-b border-white/5 flex items-center justify-between"
                 >
                   <span className="flex items-center gap-2">
                     <Activity className="w-3 h-3 text-orange-500 animate-pulse" />
@@ -158,12 +158,12 @@ export default function Navbar() {
             <div className="flex flex-col gap-3 pt-2">
               <button
                 onClick={(e) => handleLinkClick(e as any, "/contact")}
-                className="w-full text-center py-3 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-[#f97316] hover:text-black transition-colors"
+                className="inner-heading w-full text-center py-3 bg-white text-black font-bold text-xs uppercase tracking-widest hover:bg-[#f97316] hover:text-black transition-colors"
               >
                 Get Custom Quote
               </button>
               
-              <div className="flex items-center justify-center gap-2 font-mono text-[9px] text-neutral-500 py-2">
+              <div className="inner-text flex items-center justify-center gap-2 font-mono text-[11px] text-neutral-500 py-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                 FMCSA Compliant & Bonded USA
               </div>

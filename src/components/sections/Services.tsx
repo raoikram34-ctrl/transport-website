@@ -28,13 +28,13 @@ export default function Services() {
         
         {/* Title Block */}
         <div ref={containerRef} className="max-w-3xl mb-16">
-          <span className="eyebrow-label text-orange-500 block mb-3">
+          <span className="eyebrow-heading text-orange-500 block mb-3">
             Core Service Modules
           </span>
-          <h2 className="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight leading-none">
+          <h2 className="secondary-heading text-3xl sm:text-5xl font-bold text-white tracking-tight leading-none">
             HIGH-FIDELITY FREIGHT SOLUTIONS.
           </h2>
-          <p className="text-sm text-neutral-450 text-neutral-400 mt-4 leading-relaxed font-light">
+          <p className="main-text text-sm text-neutral-400 mt-4 leading-relaxed font-light">
             Every freight movement complies with top safety guidelines, backed by elite driver training and state-of-the-art telemetry integration. 
           </p>
         </div>
@@ -70,29 +70,29 @@ export default function Services() {
                     <IconComponent className="w-5 h-5 text-neutral-300 group-hover:text-orange-500 transition-colors" />
                   </div>
                   
-                  <span className="text-[10px] font-mono text-neutral-600 tracking-widest uppercase group-hover:text-orange-500/60 transition-colors">
+                  <span className="eyebrow-heading text-[10px] font-mono text-neutral-600 tracking-widest uppercase group-hover:text-orange-500/60 transition-colors">
                     Svc ID // 0{idx + 1}
                   </span>
                 </div>
 
                 {/* Service Heading & Desc */}
                 <div className="mb-6">
-                  <h3 className="text-md font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors flex items-center justify-between">
+                  <h3 className="inner-heading text-md font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors flex items-center justify-between">
                     {service.title}
-                    <ArrowUpRight className="w-4 h-4 text-neutral-650 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:text-orange-500" />
+                    <ArrowUpRight className="w-4 h-4 text-neutral-655 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:text-orange-500" />
                   </h3>
-                  <p className="text-xs text-neutral-400 mt-2.5 leading-relaxed font-light min-h-[50px]">
+                  <p className="inner-text text-xs text-neutral-400 mt-2.5 leading-relaxed font-light min-h-[50px]">
                     {service.shortDesc}
                   </p>
                 </div>
 
                 {/* Specs Section - layout designed dynamically */}
                 <div className="border-t border-white/5 pt-4 flex flex-col gap-2 mt-2">
-                  <span className="text-[9px] uppercase tracking-widest text-neutral-600 font-mono mb-1">Carrier Spec Metrics</span>
+                  <span className="eyebrow-heading text-[9px] text-neutral-600 mb-1">Carrier Spec Metrics</span>
                   {service.specs.map((spec, specIdx) => (
-                    <div key={specIdx} className="flex justify-between items-center text-[10px] font-mono bg-neutral-950/40 p-1.5 px-2 rounded-sm border border-white/5">
-                      <span className="text-neutral-500">{spec.label}</span>
-                      <span className="text-white font-bold">{spec.value}</span>
+                    <div key={specIdx} className="inner-text flex justify-between items-center text-[10px] font-mono bg-neutral-950/40 p-1.5 px-2 rounded-sm border border-white/5">
+                      <span className="inner-text text-neutral-500">{spec.label}</span>
+                      <span className="inner-heading text-white font-bold">{spec.value}</span>
                     </div>
                   ))}
                 </div>
@@ -100,7 +100,7 @@ export default function Services() {
                 {/* Key Features Bullet List */}
                 <div className="mt-4 pt-3 flex flex-wrap gap-1.5">
                   {service.features.map((feature, featIdx) => (
-                    <span key={featIdx} className="text-[9px] font-mono bg-neutral-900/60 text-neutral-400 border border-white/5 px-2 py-0.5 rounded-full">
+                    <span key={featIdx} className="inner-text text-[9px] font-mono bg-neutral-900/60 text-neutral-400 border border-white/5 px-2 py-0.5 rounded-full">
                       ✓ {feature}
                     </span>
                   ))}
@@ -112,10 +112,10 @@ export default function Services() {
         </div>
 
         {/* Live Support Notice */}
-        <div className="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-[10px] text-neutral-500 uppercase">
+        <div className="inner-text mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-3 font-mono text-[10px] text-neutral-500 uppercase">
           <HelpCircle className="w-4 h-4 text-orange-500" />
           <span>Need custom dimensions, specialized chassis, or state escort permits? Direct line 24/7 support:</span>
-          <a href="tel:8005550190" className="text-white hover:text-orange-500 font-bold transition-colors">
+          <a href="tel:8005550190" className="inner-heading text-white hover:text-orange-500 font-bold transition-colors">
             1-800-TITAN-LIVE
           </a>
         </div>

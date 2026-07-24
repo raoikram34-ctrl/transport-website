@@ -74,7 +74,7 @@ export default function ServiceDetail({ params }: PageProps) {
             Back to All Services
           </button>
 
-          <div className="flex items-center gap-2 font-mono text-[9px] text-neutral-500 uppercase tracking-widest">
+          <div className="flex items-center gap-2 font-mono text-[11px] text-neutral-500 uppercase tracking-widest">
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/services")}>Services</span>
@@ -87,52 +87,52 @@ export default function ServiceDetail({ params }: PageProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-start">
           
           <div className="lg:col-span-8">
-            <span className="eyebrow-label text-orange-500 block mb-3">
+            <span className="eyebrow-heading text-orange-500 block mb-3">
               Fleet Specification Dossier
             </span>
-            <h1 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight uppercase mb-6">
+            <h1 className="primary-heading text-3xl sm:text-5xl font-medium text-white tracking-tight uppercase mb-6">
               {service.title}
             </h1>
-            <p className="text-sm sm:text-lg text-neutral-300 font-light leading-relaxed mb-8">
+            <p className="main-text text-sm sm:text-lg text-neutral-300 font-light leading-relaxed mb-8">
               {service.longDesc}
             </p>
             
             {/* Core Features list and details */}
             <div className="bg-neutral-900/25 border border-white/5 p-6 sm:p-8 rounded-sm mb-8">
-              <h3 className="font-mono text-xs uppercase text-[#f97316] font-bold tracking-widest mb-6">
+              <h3 className="eyebrow-heading text-[#f97316] mb-6">
                 Active Protocol Benefits
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {service.features.map((feat, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <div className="w-2.5 h-2.5 bg-orange-500 rounded-full mt-1.5 flex-shrink-0 animate-pulse" />
-                    <span className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">{feat}</span>
+                    <span className="inner-text text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">{feat}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Spec Table */}
-            <h3 className="font-mono text-xs uppercase text-neutral-500 tracking-widest mb-4 font-bold">
+            <h3 className="eyebrow-heading text-neutral-500 mb-4 font-bold">
               Operational Limits Registry
             </h3>
-            <div className="border border-white/5 rounded-sm overflow-hidden bg-neutral-950 font-mono text-xs mb-8">
-              <div className="grid grid-cols-2 bg-neutral-900/60 border-b border-white/5 p-3 font-bold text-neutral-400">
+            <div className="inner-text border border-white/5 rounded-sm overflow-hidden bg-neutral-950 font-mono text-xs mb-8">
+              <div className="inner-heading grid grid-cols-2 bg-neutral-900/60 border-b border-white/5 p-3 font-bold text-neutral-400">
                 <span>Dossier Parameter Class</span>
                 <span>Assigned Fleet Metric</span>
               </div>
               <div className="divide-y divide-white/5">
                 <div className="grid grid-cols-2 p-3.5">
-                  <span className="text-neutral-500">Asset Title</span>
-                  <span className="text-white font-bold">{service.title} Portfolio</span>
+                  <span className="inner-text text-neutral-500">Asset Title</span>
+                  <span className="inner-heading text-white font-bold">{service.title} Portfolio</span>
                 </div>
                 <div className="grid grid-cols-2 p-3.5">
-                  <span className="text-neutral-500">Gross Capacity Yield</span>
-                  <span className="text-white">{service.cargoCapacity}</span>
+                  <span className="inner-text text-neutral-500">Gross Capacity Yield</span>
+                  <span className="inner-heading text-white">{service.cargoCapacity}</span>
                 </div>
                 <div className="grid grid-cols-2 p-3.5">
-                  <span className="text-neutral-500">Standard Hardware specs</span>
-                  <span className="text-white">{service.equipmentStandard}</span>
+                  <span className="inner-text text-neutral-500">Standard Hardware specs</span>
+                  <span className="inner-heading text-white">{service.equipmentStandard}</span>
                 </div>
                 <div className="grid grid-cols-2 p-3.5">
                   <span className="text-neutral-500">Liability Bond Value</span>
@@ -187,13 +187,13 @@ export default function ServiceDetail({ params }: PageProps) {
             </div>
 
             {/* Vetted Authority Badget */}
-            <div className="border border-white/5 p-6 rounded-sm space-y-4 font-mono text-[10px] uppercase text-neutral-400 bg-neutral-950">
+            <div className="inner-text border border-white/5 p-6 rounded-sm space-y-4 font-mono text-[11px] uppercase text-neutral-400 bg-neutral-950">
               <div className="flex items-center gap-2 text-white">
                 <ShieldCheck className="w-4 h-4 text-emerald-500" />
-                <span>FMCSA Compliant Authority</span>
+                <span className="inner-heading">FMCSA Compliant Authority</span>
               </div>
-              <p className="text-neutral-500 tracking-wide leading-relaxed lowercase text-[9px]">
-                our dot #3829029 and brokerage license are held in absolute active standing. cargo locks guaranteed.
+              <p className="inner-text text-neutral-500 tracking-wide leading-relaxed lowercase text-[11px]">
+                our dot #3829029 and brokerage license are held in active standing. cargo locks guaranteed.
               </p>
             </div>
 
@@ -204,10 +204,10 @@ export default function ServiceDetail({ params }: PageProps) {
         {/* Dynamic FAQ Segment */}
         <div className="border-t border-white/5 pt-16 mb-16">
           <div className="max-w-3xl mb-10">
-            <span className="eyebrow-label text-[#f97316] block mb-2">
+            <span className="eyebrow-heading text-[#f97316] block mb-2">
               Resource Library
             </span>
-            <h2 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight">
+            <h2 className="secondary-heading text-2xl sm:text-3xl font-medium text-white tracking-tight">
               SPECIFIC ADVISORY FAQ
             </h2>
           </div>
@@ -220,7 +220,7 @@ export default function ServiceDetail({ params }: PageProps) {
               >
                 <button
                   onClick={() => setOpenFaqIdx(openFaqIdx === idx ? null : idx)}
-                  className="w-full p-5 text-left flex justify-between items-center text-xs sm:text-sm font-bold uppercase tracking-wide text-white hover:bg-neutral-900/30 transition-colors cursor-pointer"
+                  className="inner-heading w-full p-5 text-left flex justify-between items-center text-xs sm:text-sm font-bold uppercase tracking-wide text-white hover:bg-neutral-900/30 transition-colors cursor-pointer"
                 >
                   <span>{item.q}</span>
                   <ChevronDown
@@ -239,7 +239,7 @@ export default function ServiceDetail({ params }: PageProps) {
                       transition={{ duration: 0.3 }}
                       className="border-t border-white/5 bg-black"
                     >
-                      <div className="p-5 text-xs sm:text-sm text-neutral-450 text-neutral-400 leading-relaxed font-light">
+                      <div className="inner-text p-5 text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
                         {item.a}
                       </div>
                     </motion.div>

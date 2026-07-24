@@ -118,18 +118,18 @@ export default function Contact() {
         
         {/* Header Block */}
         <div className={FEATURES.ENABLE_ESTIMATE_CALCULATOR ? "max-w-3xl mb-16" : "max-w-3xl mb-16 mx-auto text-center"}>
-          <div className={`flex items-center gap-2 font-mono text-[9px] uppercase tracking-widest text-[#f97316] mb-4 ${!FEATURES.ENABLE_ESTIMATE_CALCULATOR && "justify-center"}`}>
+          <div className={`flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-[#f97316] mb-4 ${!FEATURES.ENABLE_ESTIMATE_CALCULATOR && "justify-center"}`}>
             <span className="cursor-pointer hover:underline" onClick={() => router.push("/")}>Home</span>
             <span>/</span>
             <span className="text-white">Contact & Quoting Terminal</span>
           </div>
-          <span className="eyebrow-label text-orange-505 text-orange-500 block mb-3">
+          <span className="eyebrow-heading text-orange-500 block mb-3">
             Interstate Dispatch Terminal
           </span>
-          <h1 className="text-4xl sm:text-6xl font-display font-medium text-white tracking-tight leading-none mb-6">
+          <h1 className="primary-heading text-4xl sm:text-6xl font-medium text-white tracking-tight leading-none mb-6">
             CONNECT WITH DISPATCH HQ.
           </h1>
-          <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
+          <p className="main-text text-xs sm:text-sm text-neutral-400 leading-relaxed font-light">
             Have cargo that needs hauling? Connect with our 24/7 central Chicago command line or submit an inquiry via our brokerage dispatch desk below.
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function Contact() {
           {/* Left: Instant Estimator Portal (Feature Flagged) */}
           {FEATURES.ENABLE_ESTIMATE_CALCULATOR && (
             <div className="lg:col-span-7 bg-neutral-900/10 border border-white/5 p-6 sm:p-8 rounded-sm">
-              <span className="eyebrow-label text-orange-500 block mb-6">
+              <span className="eyebrow-heading text-orange-500 block mb-6">
                 Pricing Estimation Engine
               </span>
 
@@ -152,7 +152,7 @@ export default function Contact() {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {/* Origin */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Origin Terminal</label>
+                          <label className="text-xs font-mono text-neutral-500 uppercase font-bold">Origin Terminal</label>
                           <select
                             value={origin}
                             onChange={(e) => setOrigin(e.target.value)}
@@ -166,7 +166,7 @@ export default function Contact() {
 
                         {/* Destination */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Destination Terminal</label>
+                          <label className="text-xs font-mono text-neutral-500 uppercase font-bold">Destination Terminal</label>
                           <select
                             value={destination}
                             onChange={(e) => setDestination(e.target.value)}
@@ -182,7 +182,7 @@ export default function Contact() {
                       <div className="grid grid-cols-2 gap-4">
                         {/* Class */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Trailer Type</label>
+                          <label className="text-xs font-mono text-neutral-500 uppercase font-bold">Trailer Type</label>
                           <select
                             value={freightType}
                             onChange={(e) => setFreightType(e.target.value)}
@@ -196,7 +196,7 @@ export default function Contact() {
 
                         {/* Weight */}
                         <div className="flex flex-col gap-1.5">
-                          <label className="text-[9px] font-mono text-neutral-500 uppercase font-bold">Est. Payload (lbs)</label>
+                          <label className="text-xs font-mono text-neutral-500 uppercase font-bold">Est. Payload (lbs)</label>
                           <input
                             type="number"
                             min="1"
@@ -225,7 +225,7 @@ export default function Contact() {
                         <div className="bg-neutral-950 p-5 rounded-sm border border-white/10 flex flex-col gap-4 relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none" />
                           
-                          <div className="flex justify-between items-center text-[9px] font-mono text-neutral-500 uppercase">
+                          <div className="flex justify-between items-center text-[11px] font-mono text-neutral-500 uppercase">
                             <span>Calculated Cost bracket</span>
                             <span className="text-emerald-400">Market index locked</span>
                           </div>
@@ -235,10 +235,10 @@ export default function Contact() {
                               <DollarSign className="w-5 h-5 text-orange-500 self-center" />
                               {calculatedQuote.cost.toLocaleString()}
                             </span>
-                            <span className="text-[10px] font-mono text-neutral-500 uppercase">Est. Gross U.S.D</span>
+                            <span className="text-[11px] font-mono text-neutral-500 uppercase">Est. Gross U.S.D</span>
                           </div>
 
-                          <div className="grid grid-cols-2 gap-4 font-mono text-[10px] uppercase">
+                          <div className="grid grid-cols-2 gap-4 font-mono text-[11px] uppercase">
                             <div className="bg-neutral-900/60 p-2 border border-white/5">
                               <span className="text-neutral-500 block">Span Highway Miles</span>
                               <span className="text-white font-bold block">{calculatedQuote.miles} road miles</span>
@@ -291,10 +291,10 @@ export default function Contact() {
                     <div className="w-12 h-12 rounded-full bg-emerald-950/40 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-5">
                       <CheckCircle2 className="w-6 h-6 animate-pulse" />
                     </div>
-                    <h3 className="font-display font-bold text-sm tracking-wide text-white uppercase">
+                    <h3 className="inner-heading font-bold text-sm tracking-wide text-white uppercase">
                       Route Manifest Staged
                     </h3>
-                    <p className="text-xs text-neutral-400 leading-relaxed max-w-sm mt-3 font-light">
+                    <p className="inner-text text-xs text-neutral-400 leading-relaxed max-w-sm mt-3 font-light">
                       Our regional routes coordinator at Chicago Core Terminal has received your dispatch bounds. We will verify weather indexes and dispatch driver availability, sending a clean locked agreement contract to <span className="text-white font-bold">{shipperEmail}</span> under 15 minutes.
                     </p>
                     <button
@@ -318,7 +318,7 @@ export default function Contact() {
           <div className={FEATURES.ENABLE_ESTIMATE_CALCULATOR ? "lg:col-span-5 space-y-6" : "space-y-6"}>
             
             <div className="bg-neutral-900/10 border border-white/5 p-6 rounded-sm">
-              <span className="eyebrow-label-sm text-neutral-500 block mb-4">Central Dispatch Lines</span>
+              <span className="eyebrow-heading text-neutral-500 block mb-4">Central Dispatch Lines</span>
               
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
@@ -326,8 +326,8 @@ export default function Contact() {
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="eyebrow-label-sm text-neutral-500 block">24/7 Command Call Line</span>
-                    <a href="tel:18005550190" className="text-xs font-bold text-white hover:text-orange-500 transition-colors uppercase">
+                    <span className="eyebrow-heading text-neutral-500 block">24/7 Command Call Line</span>
+                    <a href="tel:18005550190" className="inner-heading text-xs font-bold text-white hover:text-orange-500 transition-colors uppercase">
                       +1 (800) 555-0190 (Skyhaul Line)
                     </a>
                   </div>
@@ -338,8 +338,8 @@ export default function Contact() {
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="eyebrow-label-sm text-neutral-500 block">Brokerage Operations Email</span>
-                    <a href="mailto:dispatch@skyhaultransit.com" className="text-xs font-bold text-white hover:text-orange-500 transition-colors">
+                    <span className="eyebrow-heading text-neutral-500 block">Brokerage Operations Email</span>
+                    <a href="mailto:dispatch@skyhaultransit.com" className="inner-heading text-xs font-bold text-white hover:text-orange-500 transition-colors">
                       dispatch@skyhaultransit.com
                     </a>
                   </div>
@@ -356,10 +356,10 @@ export default function Contact() {
                     <Building className="w-3.5 h-3.5 text-orange-500" />
                     <span>{t.name}</span>
                   </div>
-                  <span className="text-neutral-500 block text-[10px] normal-case mt-0.5">{t.address}</span>
-                  <div className="flex justify-between items-center mt-2.5 pt-2.5 border-t border-white/5 text-[10px] text-neutral-400">
+                  <span className="text-neutral-500 block text-[11px] normal-case mt-0.5">{t.address}</span>
+                  <div className="flex justify-between items-center mt-2.5 pt-2.5 border-t border-white/5 text-[11px] text-neutral-400">
                     <span>{t.tel}</span>
-                    <span className="text-orange-500 text-[9px] font-bold">{t.hours}</span>
+                    <span className="text-orange-500 text-[11px] font-bold">{t.hours}</span>
                   </div>
                 </div>
               ))}

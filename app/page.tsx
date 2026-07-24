@@ -277,7 +277,7 @@ export default function Home() {
                   animate={{ y: "0%" }}
                   exit={{ y: "-100%" }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-3 eyebrow-label text-[#f97316]"
+                  className="flex items-center gap-3 eyebrow-heading text-[#f97316]"
                 >
                   <span className="w-6 h-px bg-[#f97316]" />
                   {currentScene.tagline}
@@ -294,7 +294,7 @@ export default function Home() {
                   exit={{ opacity: 0, x: 10 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white uppercase leading-[0.9]">
+                  <h1 className="primary-heading text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-white uppercase leading-[0.9]">
                     SKYHAUL TRANSIT.
                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-neutral-100 via-neutral-100/40 to-neutral-100/10 font-extrabold pb-2">
                       {currentScene.subtitle}
@@ -312,7 +312,7 @@ export default function Home() {
                   animate={{ opacity: 0.7 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, delay: 0.15 }}
-                  className="text-sm sm:text-base text-neutral-350 leading-relaxed font-light"
+                  className="main-text text-sm sm:text-base text-neutral-350 leading-relaxed font-light"
                 >
                   {currentScene.description}
                 </motion.p>
@@ -337,7 +337,7 @@ export default function Home() {
           </div>
 
           <div className="lg:col-span-4 flex flex-col justify-center gap-6 lg:border-l lg:border-white/5 lg:pl-10">
-            <span className="eyebrow-label-sm text-neutral-500 block">
+            <span className="eyebrow-heading text-neutral-500 block">
               Active Fleet Corridors
             </span>
 
@@ -357,10 +357,10 @@ export default function Home() {
                       0{scene.id}
                     </span>
                     <div className="flex flex-col">
-                      <span className="text-xs font-bold uppercase tracking-wider text-neutral-200">
+                      <span className="inner-heading text-xs font-bold uppercase tracking-wider text-neutral-200">
                         {scene.title.split(" ")[0]} Command
                       </span>
-                      <span className="text-[10px] text-neutral-500 font-mono">
+                      <span className="inner-text text-[10px] text-neutral-500 font-mono">
                         {idx === 0 ? "Strategic" : idx === 1 ? "Integrated" : "Super-priority"}
                       </span>
                     </div>
@@ -380,27 +380,27 @@ export default function Home() {
               ))}
             </nav>
 
-            <div className="border-t border-white/5 pt-6 flex flex-col gap-3 text-[10px] font-mono text-neutral-400">
+            <div className="inner-text border-t border-white/5 pt-6 flex flex-col gap-3 text-[10px] font-mono text-neutral-400">
               <div className="flex justify-between items-center bg-neutral-900/40 p-2.5 rounded-sm border border-white/5">
-                <span className="uppercase tracking-wider flex items-center gap-1.5 text-neutral-500">
+                <span className="inner-heading uppercase tracking-wider flex items-center gap-1.5 text-neutral-500">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#f97316]" />
                   Cargo Liability Bond
                 </span>
-                <span className="font-bold text-white">$1,000,000 USD Bound</span>
+                <span className="inner-heading font-bold text-white">$1,000,000 USD Bound</span>
               </div>
               <div className="flex justify-between items-center bg-neutral-900/40 p-2.5 rounded-sm border border-white/5">
-                <span className="uppercase tracking-wider flex items-center gap-1.5 text-neutral-500">
+                <span className="inner-heading uppercase tracking-wider flex items-center gap-1.5 text-neutral-500">
                   <MapPin className="w-3.5 h-3.5 text-[#f97316]" />
                   Active Command Hub
                 </span>
-                <span className="font-bold text-white">Chicago Terminal</span>
+                <span className="inner-heading font-bold text-white">Chicago Terminal</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="absolute right-12 bottom-12 flex-col items-center gap-12 hidden xl:flex text-neutral-500">
-          <span className="text-[9px] font-mono tracking-[0.5em] uppercase text-white/10 rotate-90 whitespace-nowrap mb-20 select-none">
+          <span className="text-[11px] font-mono tracking-[0.5em] uppercase text-white/10 rotate-90 whitespace-nowrap mb-20 select-none">
             EST. 1994 // MIDWEST ROAD TERMINAL
           </span>
           <div className="w-px h-16 bg-white/10" />
@@ -409,7 +409,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 font-mono text-[9px] tracking-widest uppercase opacity-40 select-none animate-pulse">
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-neutral-500 font-mono text-[11px] tracking-widest uppercase opacity-40 select-none animate-pulse">
           <span>Explore Network</span>
           <ArrowDownCircle className="w-4 h-4 text-orange-500" />
         </div>
@@ -427,19 +427,19 @@ export default function Home() {
           <GSAPScrollReveal effect="slide-up">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
               <div className="max-w-3xl">
-                <span className="eyebrow-label text-orange-500 block mb-3">
+                <span className="eyebrow-heading text-orange-500 block mb-3">
                   Core Service Portfolios
                 </span>
-                <h2 className="text-3xl sm:text-5xl font-display font-medium text-white tracking-tight">
+                <h2 className="secondary-heading text-3xl sm:text-5xl font-medium text-white tracking-tight">
                   COMPREHENSIVE LOGISTICS.
                 </h2>
-                <p className="text-xs sm:text-sm text-neutral-450 text-neutral-450 mt-3 font-light leading-relaxed">
+                <p className="main-text text-xs sm:text-sm text-neutral-450 mt-3 font-light leading-relaxed">
                   From dry van routes departing daily from Chicago/Phoenix to specialized refrigerated food haulage, we provide dedicated assets for major shipper networks.
                 </p>
               </div>
               <button
                 onClick={() => router.push("/services")}
-                className="px-6 py-3 bg-neutral-900 border border-white/15 text-[10px] font-mono uppercase tracking-widest text-[#f97316] hover:bg-white hover:text-black hover:border-white transition-all duration-300 whitespace-nowrap rounded-xs"
+                className="px-6 py-3 bg-neutral-900 border border-white/15 text-[11px] font-mono uppercase tracking-widest text-[#f97316] hover:bg-white hover:text-black hover:border-white transition-all duration-300 whitespace-nowrap rounded-xs"
               >
                 View All Services →
               </button>
@@ -455,26 +455,26 @@ export default function Home() {
                 >
                   <div>
                     <div className="flex justify-between items-center mb-6">
-                      <span className="text-[9px] font-mono text-neutral-600 tracking-widest uppercase">
+                      <span className="eyebrow-heading text-[11px] text-neutral-600 tracking-widest uppercase">
                         Service Line 0{idx + 1}
                       </span>
-                      <span className="text-[10px] font-mono text-[#f97316] font-bold bg-[#f97316]/5 border border-[#f97316]/10 px-2.5 py-0.5 rounded-sm">
+                      <span className="eyebrow-heading text-[10px] text-[#f97316] bg-[#f97316]/5 border border-[#f97316]/10 px-2.5 py-0.5 rounded-sm">
                         ACTIVE FLEET
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors">
+                    <h3 className="inner-heading text-base font-bold uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-neutral-400 mt-3 leading-relaxed font-light min-h-[50px]">
+                    <p className="main-text text-xs text-neutral-400 mt-3 leading-relaxed font-light min-h-[50px]">
                       {service.shortDesc}
                     </p>
                     
-                    <div className="border-t border-white/5 pt-4 mt-6 space-y-2">
+                    <div className="inner-text border-t border-white/5 pt-4 mt-6 space-y-2">
                       {service.specs.slice(0, 2).map((s, sIdx) => (
                         <div key={sIdx} className="flex justify-between text-[10px] font-mono">
-                          <span className="text-neutral-500">{s.label}</span>
-                          <span className="text-neutral-200 font-bold">{s.value}</span>
+                          <span className="inner-text text-neutral-500">{s.label}</span>
+                          <span className="inner-heading text-neutral-200 font-bold">{s.value}</span>
                         </div>
                       ))}
                     </div>
@@ -483,7 +483,7 @@ export default function Home() {
                   <div className="mt-8 flex items-center justify-between">
                     <button
                       onClick={() => router.push(`/services/${service.id}`)}
-                      className="text-[10px] font-mono text-orange-500 uppercase tracking-widest hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      className="inner-heading text-[10px] font-mono text-orange-500 uppercase tracking-widest hover:underline inline-flex items-center gap-1 cursor-pointer"
                     >
                       Read Specifications 
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -508,65 +508,63 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 sm:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <GSAPScrollReveal effect="slide-right" className="lg:col-span-7">
             <div>
-              <span className="eyebrow-label text-orange-500 block mb-3">
+              <span className="eyebrow-heading text-orange-500 block mb-3">
                 Logistics Safety Standards
               </span>
-              <h2 className="text-2xl sm:text-4xl font-display font-medium text-white tracking-tight mb-6">
+              <h2 className="secondary-heading text-2xl sm:text-4xl font-medium text-white tracking-tight mb-6">
                 PRACTICING PRISTINE LOGISTICAL SAFETY.
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-400 leading-relaxed font-light mb-8 max-w-xl">
+              <p className="main-text text-xs sm:text-sm text-neutral-450 leading-relaxed font-light mb-8 max-w-xl">
                 We operate one of the safest trucking fleets on American roads today. Skyhaul Transit LLC structures severe training protocols and monitors telemetry markers continually to protect high-tier commercial cargo.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-[11px]">
+              <div className="inner-text grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-[11px]">
                 <div className="bg-neutral-900/40 border border-white/5 p-4 rounded-sm">
-                  <div className="flex items-center gap-2 text-orange-500 font-bold mb-1">
+                  <div className="inner-heading flex items-center gap-2 text-orange-500 font-bold mb-1">
                     <CheckSquare className="w-4 h-4" />
                     <span>0.01% Error</span>
                   </div>
-                  <span className="text-neutral-500 text-[10px] uppercase block">Freight Claims Ratio</span>
+                  <span className="inner-text text-neutral-500 text-[10px] uppercase block">Freight Claims Ratio</span>
                 </div>
                 <div className="bg-neutral-900/40 border border-white/5 p-4 rounded-sm">
-                  <div className="flex items-center gap-2 text-orange-500 font-bold mb-1">
+                  <div className="inner-heading flex items-center gap-2 text-orange-500 font-bold mb-1">
                     <Award className="w-4 h-4" />
                     <span>SMARTWAY</span>
                   </div>
-                  <span className="text-neutral-500 text-[10px] uppercase block">FMCSA Green Certified</span>
+                  <span className="inner-text text-neutral-500 text-[10px] uppercase block">FMCSA Green Certified</span>
                 </div>
                 <div className="bg-neutral-900/40 border border-white/5 p-4 rounded-sm">
-                  <div className="flex items-center gap-2 text-orange-500 font-bold mb-1">
+                  <div className="inner-heading flex items-center gap-2 text-orange-500 font-bold mb-1">
                     <Sparkles className="w-4 h-4" />
                     <span>GPS Sat</span>
                   </div>
-                  <span className="text-neutral-500 text-[10px] uppercase block">Tractor Telemetry ELD</span>
+                  <span className="inner-text text-neutral-500 text-[10px] uppercase block">Tractor Telemetry ELD</span>
                 </div>
               </div>
             </div>
-          </GSAPScrollReveal>
-
-          <GSAPScrollReveal effect="slide-left" className="lg:col-span-5 bg-neutral-900/30 border border-white/5 p-6 sm:p-8 rounded-sm">
+          </GSAPScrollReveal>           <GSAPScrollReveal effect="slide-left" className="lg:col-span-5 bg-neutral-900/30 border border-white/5 p-6 sm:p-8 rounded-sm">
             <div>
-              <span className="text-[10px] font-mono text-neutral-500 uppercase block mb-2">DOT Authority Dossier</span>
-              <div className="space-y-4 font-mono text-[11px] uppercase">
+              <span className="inner-text text-[10px] font-mono text-neutral-500 uppercase block mb-2">DOT Authority Dossier</span>
+              <div className="inner-text space-y-4 font-mono text-[11px] uppercase">
                 <div className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-neutral-500">Legal Carrier Name</span>
-                  <span className="text-white font-bold">Skyhaul Transit LLC</span>
+                  <span className="inner-text text-neutral-500">Legal Carrier Name</span>
+                  <span className="inner-heading text-white font-bold">Skyhaul Transit LLC</span>
                 </div>
                 <div className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-neutral-500">DOT Authorization</span>
-                  <span className="text-white font-bold">#3829029</span>
+                  <span className="inner-text text-neutral-500">DOT Authorization</span>
+                  <span className="inner-heading text-white font-bold">#3829029</span>
                 </div>
                 <div className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-neutral-500">MC License Cluster</span>
-                  <span className="text-white font-bold">#998310</span>
+                  <span className="inner-text text-neutral-500">MC License Cluster</span>
+                  <span className="inner-heading text-white font-bold">#998310</span>
                 </div>
                 <div className="flex justify-between border-b border-white/5 pb-2">
-                  <span className="text-neutral-500">Fleet Coverage Tier</span>
-                  <span className="text-emerald-400 font-bold">48 States Bonded</span>
+                  <span className="inner-text text-neutral-500">Fleet Coverage Tier</span>
+                  <span className="inner-heading text-emerald-400 font-bold">48 States Bonded</span>
                 </div>
                 <div className="flex justify-between pt-1">
-                  <span className="text-neutral-500">Operational Uptime</span>
-                  <span className="text-orange-500 font-bold">99.98% SLA Score</span>
+                  <span className="inner-text text-neutral-500">Operational Uptime</span>
+                  <span className="inner-heading text-orange-500 font-bold">99.98% SLA Score</span>
                 </div>
               </div>
             </div>
@@ -580,10 +578,10 @@ export default function Home() {
     
     <GSAPScrollReveal effect="slide-up" className="mb-10">
       <div>
-        <h2 className="text-2xl sm:text-4xl font-display text-white">
+        <h2 className="secondary-heading text-2xl sm:text-4xl text-white">
           FLEET VISUAL OPERATIONS
         </h2>
-        <p className="text-sm text-neutral-400 mt-2">
+        <p className="main-text text-sm text-neutral-400 mt-2">
           Real-world logistics assets powering nationwide delivery network.
         </p>
       </div>
@@ -616,13 +614,13 @@ export default function Home() {
         <section className="relative py-16 bg-[#050505] border-t border-b border-white/5">
           <GSAPScrollReveal effect="zoom-in" duration={1} className="max-w-5xl mx-auto px-6 text-center">
             <div>
-              <span className="eyebrow-label text-orange-500 block mb-2">
+              <span className="eyebrow-heading text-orange-500 block mb-2">
                 Interstate Telemetry Hub
               </span>
-              <h2 className="text-2xl sm:text-3xl font-display font-medium text-white tracking-tight mb-4">
+              <h2 className="secondary-heading text-2xl sm:text-3xl font-medium text-white tracking-tight mb-4">
                 TRACK AND RECORD CARGO IN REAL TIME.
               </h2>
-              <p className="text-xs text-neutral-400 max-w-xl mx-auto leading-relaxed mb-8">
+              <p className="main-text text-xs text-neutral-400 max-w-xl mx-auto leading-relaxed mb-8">
                 Access active satellite driver shifts, geo-position indexes, and electronic signatures directly. Ensure high caliber precision for active route brackets.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
